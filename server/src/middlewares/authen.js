@@ -41,25 +41,46 @@ export const validateSignupStaff = handleAsync(async (req, res, next) => {
   }
 })
 
-export const signedIn = async (req, res, next) => {
-  const authHeader = req.headers.authorization
-  const token = authHeader && authHeader.split(" ")[1]
+export const verifyToken = async(req, res, next) => {
+    try {
+        const authHeader = req.headers?.authorization
+        const token = authHeader && authHeader.split(" ")[1]; 
+        if (!token) {
+            return res.status(403).send({message: "missing token"})
+        } 
+        jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
+            if (error) return res.status(403).send({ message: error })
+            req.user = user
+            next()
+        })
 
-  if (token == null) {
-    return res.status(500).json({ msg: "UNAUTHORIZED" })
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.status(500).json({ msg: "UNAUTHORIZED" })
+    } catch (error) {
+        console.log(error)
     }
-    req.user = user
-    next()
-  })
+}
+
+export const isAuth = async (req, res, next) => {
+    try {
+        let loggedInUserId = req.params.id;
+        //manager always auth
+        if(req.user.role != "quanLy")
+            if (!loggedInUserId || !req.user.userId || loggedInUserId !== req.user.userId) 
+                return res.status(403).json({ msg: "You are not authenticate" });
+        next()
+    } catch (error) {
+        return res.status(404).json({msg: error});
+    }
 }
 
 export const isManager = async (req, res, next) => {
-  
+    try {
+        if (!req.user.role) return res.status(400).json({ msg: "missing role" })
+        if (req.user.role !== 'quanLy') //only manager can create staff
+            return res.status(403).json({ msg: 'you are not the manager' })
+        next()
+    } catch (error) {
+        return res.status(404).json({msg: error});
+    }
 }
 
 
