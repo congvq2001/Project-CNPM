@@ -10,11 +10,11 @@ const eventSchema = new mongoose.Schema({
         require: true,
         unique: true
     },
-    time_start: {
+    timeStart: {
         type: Date,
         require: true
     },
-    time_end: {
+    timeEnd: {
         type:Date,
         require: true,
 
@@ -23,11 +23,7 @@ const eventSchema = new mongoose.Schema({
         type: String, 
         require: true, 
     },
-    detail: {
-        type: String,
-        require: true
-    },
-    discount: {
+    price: {
         type: Number,
         require: true
     }
