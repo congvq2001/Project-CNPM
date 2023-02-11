@@ -1,0 +1,92 @@
+.header1 .logo{
+  padding: 10px 10px;
+  border-radius: 20px;
+}
+.header1 .nav-link{
+  width: 100px;
+  text-align: center;
+}
+.header1 .nav-link.active{
+  background-color: rgb(76, 214, 238);
+  border-radius: 15px;
+  font-weight: bolder;
+}
+/* Nút Dropdown*/
+.header1 .nut_dropdown {
+    background-color: #0080ff;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    min-width: 100px;
+    margin-right: 140px;
+  }
+  
+  /* Thiết lập vị trí cho thẻ div với class dropdown*/
+  .addspace{
+    justify-content: space-between;
+  }
+
+  .drop {
+    position: relative;
+    display: inline-block;
+    z-index: 100;
+  }
+  
+  /* Nội dung Dropdown */
+  .noidung_dropdown {
+    /*Ẩn nội dụng các đường dẫn*/
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  
+  }
+  .noidung_dropdown:hover{
+    display: block;
+  }
+  
+  /* Thiết kế style cho các đường dẫn tronng Dropdown */
+  .noidung_dropdown div{
+    padding:  12px 16px;
+    display: block;
+  }
+  .noidung_dropdown div:hover{
+    background-color: #ddd;
+  }
+  
+  /* hiển thị nội dung dropdown khi hover */
+  .drop:hover .noidung_dropdown {display: block;}
+  
+  /* Thay đổi màu background cho nút khi được hover */
+  .drop:hover .nut_dropdown {background-color: #00bfff;}
+  
+  /*Dùng Để hiển thị nội dung*/
+  .noidung_dropdown.hienThi {display:block;}
+
+  .home_login{
+    padding: 5px 10px;
+    width: 120px;
+    margin-right: 10px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+    transition-duration: 0.4s;
+  }
+  .home_login:hover{
+    background-color: #008CBA;
+  color: white;
+  }
+  .home_signup{
+    padding: 5px 10px;
+    width: 120px;
+    margin-right: 10px;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #e7e7e7;
+    transition-duration: 0.4s;
+  }
+  .home_signup:hover{
+    background-color: #e7e7e7;
+  }

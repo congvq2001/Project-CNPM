@@ -1,0 +1,28 @@
+{
+  "name": "todolist-server",
+  "version": "1.0.0",
+  "description": "server todolist ",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon --experimental-modules ./index.js",
+    "dev": "nodemon src/index.js --exec \"node -r dotenv/config --experimental-specifier-resolution=node\""
+  },
+  "author": "dsc hust",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.13.14",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.15"
+  }
+}

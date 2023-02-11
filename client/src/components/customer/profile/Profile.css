@@ -1,0 +1,214 @@
+.prof_ctn{
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://image.freepik.com/free-photo/hand-painted-watercolor-background-with-sky-clouds-shape_24972-1095.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+.info_ticket{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.logout{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logout button{
+    height: 30px;
+    width: auto;
+    color: #fff;
+    background-color: #fa4e57;
+    border-color: #fa4e57;
+    border-radius: 5px;
+    box-shadow: none;
+}
+.logout button:hover{
+    cursor: pointer;
+    background-color: #fa1924;
+}
+.info_ticket .info{
+    width: 45%;
+    height: 98%;
+    background-color: rgb(173, 255, 47,0.4);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.info_ticket .info h3{
+    text-align: center;  
+}
+.info_ticket .info .img{
+    margin-top: 10px;
+    margin-left: 10%;
+    width: 150px;
+    height: 150px;
+    overflow:hidden;
+    /* border-radius: 100%; */
+}
+.info_ticket .info .img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.info_ticket .info .line{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.info_ticket .info .line .label p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10%;
+}
+.info_ticket .info .line input{
+    width: 50%;
+    height: 30px;
+    padding-left: 10px;
+    margin-left: 12%;
+    margin-top: 5px;
+    outline: hidden;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.info_ticket .info .line input:focus{
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+.info_ticket .info .bt{
+    width: 100%;
+    height: 30px;
+    position: relative;
+}
+.info_ticket .info div.hide{
+    visibility: hidden;
+}
+.info_ticket .info div button{
+    position: absolute;
+    right: 10%;
+    height: 30px;
+    width: 80px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 5px;
+    box-shadow: none;
+}
+.info_ticket .info div button:hover{
+    cursor: pointer;
+    background-color: #0258b3;
+}
+.info_ticket .info p{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: 10%;
+}
+.info_ticket .info .vip{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    position: relative;
+}
+.info_ticket .info .vip p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10%;
+}
+.info_ticket .info .vip a{
+    width: 80px;
+    height: 28px;  
+    position: absolute;
+    right: 10%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 1px 1px 2px #0258b3;
+}
+.info_ticket .info .vip a:hover{
+    cursor: pointer;
+    background-color: #0258b3;
+}
+.info_ticket .ticket{
+    width: 45%;
+    height: 98%;
+    background-color: rgba(47, 196, 255, 0.4);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.info_ticket .ticket h3{
+    text-align: center;
+}
+.all{
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    bottom: 5%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.all::-webkit-scrollbar{
+    display: none;
+}
+.all .one{
+    border: 1px solid rgb(0,0,0,0.5);
+    width: 90%;
+    height: 150px;
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+.all .one:nth-child(3n){
+    background-color: rgb(0, 0, 255,0.2);
+}
+.all .one:nth-child(3n+1){
+    background-color: rgb(255, 255, 255,0.3);
+}
+.all .one:nth-child(3n+2){
+    background-color: rgba(255, 255, 128, .5);
+}
+.all .one .inftk{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.all .one .inftk p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 5%;
+}
+.all .one .state{
+    width: 30%;
+    display: table;
+}
+.all .one .state p{
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;  
+}

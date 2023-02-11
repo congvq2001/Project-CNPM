@@ -1,0 +1,16 @@
+.stallTicket {
+    min-height: 500px;
+    margin: 30px;
+    border-radius: 10px;
+    padding: 20px;
+    padding-left: 50px;
+    width: 60%;
+    background-color: white;
+}
+#b1 {
+    margin-left: 40px;
+    margin-top: 40px;
+}
+.db{
+    overflow-y: scroll;
+}

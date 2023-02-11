@@ -1,0 +1,48 @@
+.banner{
+    height : 100%; 
+    width:100%;
+    background-color:#F5F5F5;
+    overflow: hidden;
+}
+
+.Home1 h1{
+    font-weight: bold;
+    color: #30475E
+}
+.Home1 p{
+    font-family: Arial;
+    color: #191919;
+}
+.homeComponent{
+    height : 100%;
+    margin-top:100px;
+    margin-right:100px;
+    margin-left:100px; 
+    overflow: hidden
+}
+
+.homeCard{
+    margin-right:20px; 
+    margin-left:20px; 
+    border-radius: 50px 0px
+}
+
+.homeCardBody{
+    height: 18rem;
+    padding-left:30px;
+    padding-right:30px
+}
+
+.homeCardImg{
+    border-radius: 50px 0px 0 0
+}
+
+.homeCardFooter{
+    text-align: center;
+    background-color:#F05454;
+    color:#FFFFFF;
+    border-radius: 0px 0px 50px 0px
+}
+.homeCardFooter:hover{
+    cursor: pointer;
+}
