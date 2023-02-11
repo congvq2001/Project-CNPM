@@ -1,4 +1,4 @@
-// import { Staff } from "../models"
+import { Staff } from "../models"
 import { handleAsync } from "../utils"
 import bcrypt from "bcrypt"
 
@@ -8,14 +8,12 @@ export const updateStaff = handleAsync(async (req, res) => {
     if (req.body.password) {
       newPassword = await bcrypt.hash(req.body.password, 8)
     }
-
     let params = {
-      phoneNumber: req.body.phoneNumber,
+      phone: req.body.phone,
       password: newPassword,
       name: req.body.name,
       email: req.body.email,
-      role: req.body.role,
-      salary: req.body.salary,
+      role: req.body.role
     }
     for (let prop in params) if (!params[prop]) delete params[prop]
     const data = await Staff.findByIdAndUpdate(req.params.id, params)
@@ -41,7 +39,7 @@ export const updateStaff = handleAsync(async (req, res) => {
 
 export const getOneStaff = handleAsync(async (req, res) => {
   try {
-    const staff = await Staff.findById(req.params.id)
+    const staff = await Staff.findById(req.params.id).select('-password')
     if (!staff) {
       return res.json({
         message: "Xóa thất bại",
@@ -61,7 +59,7 @@ export const getOneStaff = handleAsync(async (req, res) => {
 
 export const deleteStaff = handleAsync(async (req, res) => {
   try {
-    const data = await Staff.findByIdAndRemove(req.params.id)
+    const data = await Staff.findByIdAndUpdate(req.params.id, {status: false})
     if (!data) {
       return res.json({
         message: "Xóa thất bại",
