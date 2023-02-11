@@ -1,61 +1,80 @@
-// import { User, User_ticket, Event, User_event, Vip_transition } from "../models"
-// import { handleAsync } from "../utils"
-// import bcrypt from "bcrypt"
+import {
+    Customer,
+    //User_ticket,
+    //Event,
+    //User_event,
+    //Vip_transition
+} from "../models"
+import { UserService } from "../services";
+import { handleAsync } from "../utils"
+import bcrypt from "bcrypt"
 
-// export const updateUser = handleAsync(async (req, res) => {
-//   try {
-//     var newPassword
-//     if (req.body.password) {
-//       newPassword = await bcrypt.hash(req.body.password, 8)
-//     }
-//     let params = {
-//       phoneNumber: req.body.phoneNumber,
-//       password: newPassword,
-//       name: req.body.name,
-//       email: req.body.email,
-//       is_vip: req.body.is_vip,
-//       id_vip_transition: req.body.id_vip_transition,
-//     }
-//     for (let prop in params) if (!params[prop]) delete params[prop]
-//     const data = await User.findByIdAndUpdate(req.params.id, params)
-//     if (!data) {
-//       return res.json({
-//         message: "Cập nhật thất bại",
-//         cause: "Khách hàng không tồn tại",
-//       })
-//     }
-//     const newdata = await User.findById(req.params.id)
-//     res.json({
-//       message: "Cập nhật thành công",
-//       newdata,
-//     })
-//   } catch (error) {
-//     res.json({
-//       message: "Có lỗi xảy ra",
-//       error,
-//     })
-//   }
-// })
+export const getCustomers = handleAsync(async (req, res) => {
+    try {
+        const users = await UserService.getAll();
+        res.json({
+            data: users
+        });
+    } catch (error) {
+        res.json({
+            message: "Có lỗi xảy ra",
+            error,
+        })
+    }
+});
 
-// export const deleteUser = handleAsync(async (req, res) => {
-//   try {
-//     const data = await User.findByIdAndRemove(req.params.id)
-//     if (!data) {
-//       return res.json({
-//         message: "Xóa thất bại",
-//         cause: "Khách hàng không tồn tại",
-//       })
-//     }
-//     res.json({
-//       message: "Xóa khách hàng thành công",
-//     })
-//   } catch (error) {
-//     res.json({
-//       message: "Xóa khách hàng thất bại",
-//       error,
-//     })
-//   }
-// })
+export const updateUser = handleAsync(async (req, res) => {
+  try {
+    var newPassword
+    if (req.body.password) {
+      newPassword = await bcrypt.hash(req.body.password, 8)
+    }
+    let params = {
+      phone: req.body.phone,
+      password: newPassword,
+      name: req.body.name,
+      address: req.body.address,
+    }
+    for (let prop in params) if (!params[prop]) delete params[prop]
+    const data = await Customer.findByIdAndUpdate(req.params.id, params)
+    if (!data) {
+      return res.json({
+        message: "Cập nhật thất bại",
+        cause: "Khách hàng không tồn tại",
+      })
+    }
+    const newdata = await Customer.findById(req.params.id)
+    res.json({
+      message: "Cập nhật thành công",
+      newdata,
+    })
+  } catch (error) {
+    res.json({
+      message: "Có lỗi xảy ra",
+      error,
+    })
+  }
+})
+
+export const deleteUser = handleAsync(async (req, res) => {
+  try {
+    const data = await Customer.findByIdAndUpdate(req.params.id, {status: false})
+    if (!data) {
+      return res.json({
+        message: "Xóa thất bại",
+        cause: "Khách hàng không tồn tại",
+      })
+    }
+    res.json({
+      message: "Xóa khách hàng thành công",
+    })
+  } catch (error) {
+    res.json({
+      message: "Xóa khách hàng thất bại",
+      error,
+    })
+  }
+})
 
 // export const getPersonalInfo = handleAsync(async (req, res) => {
 //   const userId = req.user.userId
@@ -134,24 +153,24 @@
 //   }
 // }
 
-// export const getSpecificUser = async (req, res, next) => {
-//   try {
-//     const data = await User.findOne({phoneNumber: req.params.phoneNumber})
-//     if (!data) {
-//       return res.status(404).json({
-//         success: false,
-//         message: "No user with this phoneNumber in the system",
-//       })
-//     }
-//     res.status(200).json({
-//       success: true,
-//       message: "Get user success",
-//       data: data._id,
-//     })
-//   } catch (error) {
-//     res.json({
-//       message: "Có lỗi xảy ra",
-//       error,
-//     })
-//   }
-// }
+export const getSpecificUser = async (req, res, next) => {
+  try {
+    const data = await Customer.findById(req.params.id).select('-password')
+    if (!data) {
+      return res.status(404).json({
+        success: false,
+        message: "No user found",
+      })
+    }
+    res.status(200).json({
+      success: true,
+      message: "Get user success",
+      data: data,
+    })
+  } catch (error) {
+    res.json({
+      message: "Có lỗi xảy ra",
+      error,
+    })
+  }
+}
