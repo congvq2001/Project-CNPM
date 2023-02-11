@@ -1,25 +1,25 @@
+import { Staff } from "../models"
+
 export const getAll = async () => {
   return await Staff.find({})
 }
 
 export const create = async (data) => {
   const {
-    // staff_code,
-    phoneNumber,
     email,
     password,
     name,
-    role,
-    salary,
+    phone,
+    address,
+    role
   } = data
   const user = new Staff({
-    // staff_code,
-    phoneNumber,
     email,
     password,
     name,
-    role,
-    salary,
+    phone,
+    address,
+    role
   })
   return await user.save()
 }
