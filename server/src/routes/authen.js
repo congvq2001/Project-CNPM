@@ -12,13 +12,13 @@ import {
   // updateFacilities,
   // deleteFacilities,
   // getOneFacility,
-  // createEvent,
-  // updateEvent,
-  // deleteEvent,
+  createEvent,
+  updateEvent,
+  deleteEvent,
   // createVipTicket,
-  // latestEvents,
-  // getOneEvent,
-  // getAllEvent,
+  latestEvents,
+  getOneEvent,
+  getAllEvent,
   // createTypeTicket,
   // infoTicket,
   // updateTypeTicket,
@@ -87,7 +87,7 @@ router.post("/signup-staff", validateSignupStaff, createStaff)
 // router.patch("/facilities/:id", updateFacilities)
 // router.post("/userEvent", signedIn, UserRegisterEvent)
 // router.delete("/facilities/:id", deleteFacilities)
-// router.post("/Event", createEvent)
+
 
 // router.get("/event/user/:id", participantsEvent)
 
@@ -104,11 +104,12 @@ router.patch("/customer/:id",verifyToken, isAuth, updateUser)
 router.delete("/customer/:id",verifyToken, isAuth, deleteUser)
 router.get("/customer/:id",verifyToken,isAuth, getSpecificUser)
 
-// router.get("/event/:id", getOneEvent)
-// router.patch("/Event/:id", updateEvent)
-// router.delete("/Event/:id", deleteEvent)
-// router.get("/latestEvents", latestEvents)
-// router.get("/allEvent", getAllEvent)
+router.post("/event", createEvent) 
+router.get("/event/:id", getOneEvent)
+router.patch("/event/:id", updateEvent)
+router.delete("/event/:id", deleteEvent)
+router.get("/latestEvent", latestEvents)
+router.get("/event", getAllEvent)
 
 // router.post("/user-buy-ticket", signedIn, UserBuyTicket)
 // router.post("/ticket-vip", createVipTicket)
