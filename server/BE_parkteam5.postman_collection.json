@@ -1,0 +1,955 @@
+{
+	"info": {
+		"_postman_id": "c0f10421-9d2b-4c81-92a0-a1f1b336fd5f",
+		"name": "BE_parkteam5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17100663"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2EyYjNhMTE4OTQxMjQyYmI5MDIiLCJpYXQiOjE2NzYxMzk0NDd9.wrT8FERaDOpveHt8IKwyDYyOlcSG8GKb1qZ06dm5qqQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"test2@test.com\", \r\n    \"password\" : \"0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"test2@test.com\", \r\n    \"phone\": \"0982947215\",\r\n    \"password\" : \"0\",\r\n    \"name\": \"Hung Nguyen\",\r\n    \"address\" : \"007 abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Staff",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTM2NTI2fQ.t2L_-mRNlbRyomj1Ze4I0ToWm7Lcqlpy4PzkDcMmVw4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"staff1@test.com\", \r\n    \"password\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/login-staff",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"login-staff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign Up Staff",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"staff1@test.com\", \r\n    \"phone\": \"0982947213\",\r\n    \"password\" : \"1\",\r\n    \"name\": \"Hung Nguyen\",\r\n    \"address\" : \"007 abc\",\r\n    \"role\": \"quanLy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/signup-staff",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"signup-staff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Update Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2EyYjNhMTE4OTQxMjQyYmI5MDIiLCJpYXQiOjE2NzYxMzk3MTR9.ycwDFc1yxCAQqcr-8viiy5e-D1pIUmpRXMz26GZnEPI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"0982947213\",\r\n    \"password\" : \"01\",\r\n    \"name\": \"Hung Nguyen upd\",\r\n    \"address\" : \"007 abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/customer/63e7ca2b3a118941242bb902",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"63e7ca2b3a118941242bb902"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2EyYjNhMTE4OTQxMjQyYmI5MDIiLCJpYXQiOjE2NzYxMzk3MTR9.ycwDFc1yxCAQqcr-8viiy5e-D1pIUmpRXMz26GZnEPI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/customer/63e7ca2b3a118941242bb902",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"63e7ca2b3a118941242bb902"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/customer/63e7ca2b3a118941242bb902",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								"63e7ca2b3a118941242bb902"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Customers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/customer/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"test3@test.com\", \r\n    \"phone\": \"0982947216\",\r\n    \"password\" : \"0\",\r\n    \"name\": \"Hung Nguyen\",\r\n    \"address\" : \"007 abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/customer/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"customer",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Staff",
+			"item": [
+				{
+					"name": "Get All Staffs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/staff",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"staff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Staff",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/v1/staff/63e7cc7c5c2cfc008421cc03",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"staff",
+								"63e7cc7c5c2cfc008421cc03"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Staff",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/staff/63e7cc7c5c2cfc008421cc03",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"staff",
+								"63e7cc7c5c2cfc008421cc03"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Staff",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"staff1@test.com\", \r\n    \"phone\": \"0982947213\",\r\n    \"password\" : \"1\",\r\n    \"name\": \"Hung Nguyen staff upd\",\r\n    \"address\" : \"007 abcd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/staff/63e7cc7c5c2cfc008421cc03",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"staff",
+								"63e7cc7c5c2cfc008421cc03"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Staff",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U3Y2M3YzVjMmNmYzAwODQyMWNjMDMiLCJyb2xlIjoicXVhbkx5IiwiaWF0IjoxNjc2MTQ4ODAwfQ.H5nEUT5Cq3jWr65l7dl4DyYfzp6Ksm0xLErb8iclLM4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"staff3@test.com\", \r\n    \"phone\": \"0982947215\",\r\n    \"password\" : \"1\",\r\n    \"name\": \"Hung Nguyen\",\r\n    \"address\" : \"007 abc\",\r\n    \"role\": \"nvQuay\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/staff/",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"staff",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": [],\r\n    \"name\": \"su kien 4\",\r\n    \"timeStart\" :\"2023-02-11\",\r\n    \"timeEnd\" : \"2023-02-20\",\r\n    \"description\": \"des su kien 1\",\r\n    \"price\" : \"20000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/event/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Event",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/event/63e810d990a9643844e9987e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"event",
+								"63e810d990a9643844e9987e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update A Event",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"image\": [],\r\n    \"name\": \"su kien ABC\",\r\n    \"timeStart\" :\"2023-02-11\",\r\n    \"timeEnd\" : \"2023-02-21\",\r\n    \"description\": \"des su kien 3\",\r\n    \"price\" : \"35000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/event/63e821e411864a026c47f5b8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"event",
+								"63e821e411864a026c47f5b8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/event/63e80dfb87133c519c271290",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"event",
+								"63e80dfb87133c519c271290"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3 Latest Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/latestEvent",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"latestEvent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/event?page=2&limit=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"event"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ticket",
+			"item": [
+				{
+					"name": "Create Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticketType\" : \"Casual\",\r\n    \"name\" : \"Ve 2 tieng\",\r\n    \"timeLimit\" : \"120\",\r\n    \"price\" : \"100000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ticket",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/63e8210b6f925b00f8dd25f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"63e8210b6f925b00f8dd25f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update A Ticket",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"ve sk ABCD\" ,\r\n    \"price\" : \"3000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/ticket/63e821e411864a026c47f5ba",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"63e821e411864a026c47f5ba"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket/63e8210b6f925b00f8dd25f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket",
+								"63e8210b6f925b00f8dd25f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/eventTicket",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"eventTicket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/ticket",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ticket"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CusEvent",
+			"item": [
+				{
+					"name": "Booking Event Ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4MDNkMmY1YzE3ZDRhZDBiNjI0OTMiLCJpYXQiOjE2NzYxNjI4MDV9.0jONWMUQLDfR-SMEoQlPj4wqOhR5zyXpoeJD4eTuIuI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/customerEvent/63e821e911864a026c47f5bc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customerEvent",
+								"63e821e911864a026c47f5bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Events That Cus Joined",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4MDBjMzhmMDhkMDQ5NjQwMDY5MDAiLCJpYXQiOjE2NzYxNjMwMzB9.F4BHJzDwDN-PaK_wJOKHRei88uRtAZZfAcDeAiG9KT4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/customerEvent",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customerEvent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Event's Participants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/event/user/63e821e911864a026c47f5bc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"event",
+								"user",
+								"63e821e911864a026c47f5bc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CusTicket",
+			"item": [
+				{
+					"name": "Checkin Dat Truoc",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticketId\" : \"63e821e411864a026c47f5ba\",\r\n    \"cusId\" : \"63e800bc8f08d049640068fe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/staff/checkin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"staff",
+								"checkin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticketId\" : \"63e821e411864a026c47f5ba\",\r\n    \"quantity\" : \"2\",\r\n    \"cusName\" : \"Hung\",\r\n    \"cusPhone\": \"00000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/staff/checkin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"staff",
+								"checkin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Income",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"time_from\":\"2023-02-11\" ,\r\n    \"time_to\" : \"2023-02-13\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}ticketIncome",
+					"host": [
+						"{{url}}ticketIncome"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
