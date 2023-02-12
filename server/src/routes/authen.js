@@ -8,10 +8,10 @@ import {
   UserBuyTicket,
   updateTicket,
   deleteTicket,
-  // createFacilities,
-  // updateFacilities,
-  // deleteFacilities,
-  // getOneFacility,
+  createGame,
+  updateGame,
+  deleteGame,
+  getOneGame,
   createEvent,
   updateEvent,
   deleteEvent,
@@ -22,12 +22,12 @@ import {
   // createTypeTicket,
   infoTicket,
   // updateTypeTicket,
-  // userTicket,
+  userTicket,
   // deleteTypeTickte,
   UserRegisterEvent,
   participantsEvent,
   checkInTicket,
-  // checkoutTicket,
+  checkoutTicket,
   getStaffs,
   updateStaff,
   deleteStaff,
@@ -37,13 +37,14 @@ import {
   getIncome,
   //getPersonalInfo,
   //personalUpdateUser,
-  // getFacilities,
+  getGame,
   userJoinEvents,
   getOneStaff,
-  // getSpecificTicket,
+  getSpecificTicket,
   getSpecificUser,
   getEventTickets,
   getAllTicket,
+  addGameToCusTicket
   // UserBuyTicketWithoutToken
 } from "../controllers"
 import {
@@ -77,18 +78,18 @@ router.get("/eventTicket", getEventTickets)
 // router.put("/typeTicket/:id", createTypeTicket)
 // router.delete("/typeTicket/:id/:typeId", deleteTypeTickte)
 // router.put("/ticket/:id/:typeId", updateTypeTicket)
-// router.get("/ticket/user/:userId", userTicket)
+router.get("/ticket/user/:userId", userTicket)
 
 // router.put("/typeTicket/:id", createTypeTicket)
 // router.put("/ticket/:id/:typeId", updateTypeTicket)
 router.post("/ticketIncome", validateViewIncome, getIncome)
 
-// router.get("/facilities", getFacilities)
-// router.get("/facilities/:id", getOneFacility)
-// router.post("/facilities", createFacilities)
-// router.patch("/facilities/:id", updateFacilities)
+router.get("/game", getGame)
+router.get("/game/:id", getOneGame)
+router.post("/game", createGame)
+router.patch("/game/:id", updateGame)
 router.post("/customerEvent/:id", verifyToken, UserRegisterEvent)
-// router.delete("/facilities/:id", deleteFacilities)
+router.delete("/game/:id", deleteGame)
 
 
 router.get("/event/user/:id", participantsEvent)
@@ -114,12 +115,13 @@ router.get("/latestEvent", latestEvents)
 router.get("/event", getAllEvent)
 
 //router.post("/user-buy-ticket", verifyToken, UserBuyTicket)
-// router.post("/ticket-vip", createVipTicket)
+//router.post("/ticket-vip", createVipTicket)
 
 router.put("/staff/checkin", checkInTicket)
-// router.put("/staff/checkout", checkoutTicket)
+router.put("/staff/checkout/:id", checkoutTicket)
+router.put("/staff/addGame/:id", addGameToCusTicket)
 
-// router.get("/userTicket/:id", getSpecificTicket)
+router.get("/userTicket/:id", getSpecificTicket)
 // router.get("/iduser/:phoneNumber", getSpecificUser)
 // router.post("/userbuyticketwithouttoken", UserBuyTicketWithoutToken)
 export default router
