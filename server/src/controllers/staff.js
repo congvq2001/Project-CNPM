@@ -1,44 +1,72 @@
-// import { User, User_ticket, Ticket,User_event,Event } from "../models";
+import { Customer, CusTicket, Ticket, CustomerEvent, Event } from "../models";
 
-// export const checkInTicket = async (req, res, next) => {
-//   try {
-//     const data = req.body;
-   
-//     // if (staff.role !==1) {
-//     //   return res
-//     //     .status(400)
-//     //     .json({ success: false, message: "Only the front desk can check in" });
-//     // }
-//     const ticket = await User_ticket.findById(data.idUserTicket);
-//     let idut=' ';
-
-//     //console.log('ticket',ticket)
-//     if (ticket) {
-//       await ticket.updateOne({ $set: { time_checkin: data.time_checkin } });
-//       return res.status(200).json({ status: true, message: "Checkin success" });
-//     } else {
-//       const isExistTicket = await Ticket.find({
-//         type: { $elemMatch: { _id: req.body.id_ticket } },
-//       });
-//       if (!isExistTicket) {
-//         return res.status(200).json({
-//           status: 404,
-//           message: "Vé hoặc người mua vé không tồn tại",
-//         });
-//       }
-//       const userTicket = new User_ticket(req.body);
-//       idut=userTicket._id;
-//       await userTicket.save();
-//     }
-
-//     res.status(200).json({ status: true, message: "Checkin success", id:idut });
-//   } catch (error) {
-//     res.json({
-//       message: "Có lỗi xảy ra",
-//       error:error.message,
-//     });
-//   }
-// };
+export const checkInTicket = async (req, res, next) => {
+  try {
+    const { ticketId, cusId, quantity, cusName, cusPhone } =
+      req.body;
+    let idut = " ";
+    const data = await Ticket.findById(ticketId);
+    if (data.ticketType === "Event") {
+      const cus = await Customer.findById(cusId);
+      const ticket = await CustomerEvent.findOne({
+        eventId: data.eventId,
+        cusId: cusId,
+      });
+      if (ticket) {
+        const checkInTicket = await CusTicket.create({
+          ticketId,
+          cusId,
+          quantity: ticket.quantity,
+          cusName: cus.name,
+          cusPhone: cus.phone,
+          isPreOrder: true,
+          isVip: cus.isVip,
+          price: cus.isVip
+            ? data.price * ticket.quantity * 0.8
+            : data.price * ticket.quantity * 0.64,
+        });
+        return res
+          .status(200)
+          .json({
+            status: true,
+            message: "Checkin success",
+            data: checkInTicket,
+          });
+      } else {
+        const userTicket = await CusTicket.create({
+          ticketId,
+          cusId,
+          quantity,
+          cusName,
+          cusPhone,
+          isVip : cusId?.isVip ? true :false,
+          price: cusId?.isVip ? data.price * quantity * 0.8 : data.price * quantity,
+        });
+        return res
+          .status(200)
+          .json({ status: true, message: "Checkin success", data: userTicket});
+      }
+    }
+    const userTicket = await CusTicket.create({
+          ticketId,
+          cusId,
+          quantity,
+          cusName,
+          cusPhone,
+          isVip :  cusId?.isVip ? true :false,
+          price: cusId?.isVip ? data.price * quantity * 0.8 : data.price * quantity,
+        });
+        return res
+          .status(200)
+          .json({ status: true, message: "Checkin success", data: userTicket});
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "Có lỗi xảy ra",
+      error: error.message,
+    });
+  }
+};
 
 // /////
 // export const checkoutTicket = async (req, res, next) => {
@@ -52,7 +80,7 @@
 //     //     .status(400)
 //     //     .json({ success: false, message: "Only the front desk can check in" });
 //     // }
-    
+
 //     const ticket = await User_ticket.findById(data.idUserTicket);
 
 //     if (!ticket) {
@@ -60,7 +88,7 @@
 //         message: "Có lỗi xảy ra",
 //       });
 //     }
-    
+
 //     const titleTicket = await Ticket.findOne({
 //       type: { $elemMatch: { _id: ticket.id_ticket } },
 //     });
@@ -87,7 +115,7 @@
 //     if(ticket.id_ticket==phat._id){
 //         const timeCheckIn=new Date(ticket.time_checkin);
 //         const timeCheckOut=new Date(data.time_checkout);
-//         const time=Math.abs(timeCheckOut-timeCheckIn)/1000/60-2*60; 
+//         const time=Math.abs(timeCheckOut-timeCheckIn)/1000/60-2*60;
 //         if(time>=0){
 //           const overTime=50000/30*time;
 //           priceTicket +=overTime;
@@ -104,7 +132,6 @@
 //     });
 //   }
 // };
-
 
 // //Tra cứu thông tin vé user
 // export const searchUsers = async (req, res, next) => {
