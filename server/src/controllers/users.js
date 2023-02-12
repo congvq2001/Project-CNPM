@@ -1,7 +1,7 @@
 import {
-    Customer,
+    Customer, CustomerEvent, 
     //User_ticket,
-    //Event,
+    Event,
     //User_event,
     //Vip_transition
 } from "../models"
@@ -134,24 +134,25 @@ export const deleteUser = handleAsync(async (req, res) => {
 // })
 
 // //events that users participate in
-// export const userJoinEvents = async (req, res, next) => {
-//   try {
-//     const userId = req.user.userId
-//     const participants = await User_event.find({ id_user: userId })
+export const userJoinEvents = async (req, res, next) => {
+  try {
+    const userId = req.user.userId
+    const participants = await CustomerEvent.find({ cusId: userId })
 
-//     const Idevents = participants.map((item, index) => item.id_event)
+    const Idevents = participants.map((item, index) => item.eventId)
 
-//     const events = await Event.find({ _id: { $in: Idevents } })
+    const events = await Event.find({ _id: { $in: Idevents } })
 
-//     res.status(200).json({
-//       success: true,
-//       message: "Information of event participants",
-//       result: events,
-//     })
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: "INTERNAL SERVER ERROR" })
-//   }
-// }
+    res.status(200).json({
+      success: true,
+      message: "Information of event participants",
+      result: events,
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, message: "INTERNAL SERVER ERROR" })
+  }
+}
 
 export const getSpecificUser = async (req, res, next) => {
   try {
