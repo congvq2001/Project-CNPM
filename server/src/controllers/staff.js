@@ -50,11 +50,10 @@ export const checkInTicket = async (req, res, next) => {
     const userTicket = await CusTicket.create({
           ticketId,
           cusId,
-          quantity,
           cusName,
           cusPhone,
           isVip :  cusId?.isVip ? true :false,
-          price: cusId?.isVip ? data.price * quantity * 0.8 : data.price * quantity,
+          price: cusId?.isVip ? data.price  * 0.8 : data.price ,
         });
         return res
           .status(200)
@@ -69,69 +68,40 @@ export const checkInTicket = async (req, res, next) => {
 };
 
 // /////
-// export const checkoutTicket = async (req, res, next) => {
-//   // const idStaff = req.user.userId;
-//   const sale=[];
-//   try {
-//     const data = req.body;
-//     // const staff = await Staff.findById(idStaff);
-//     // if (staff.role !== 2) {
-//     //   return res
-//     //     .status(400)
-//     //     .json({ success: false, message: "Only the front desk can check in" });
-//     // }
+export const checkoutTicket = async (req, res, next) => {
+  try {
+    const cusTicket = await CusTicket.findById(req.params.id).populate('game.gameId').exec();
+    const ticket = await Ticket.findById(cusTicket.ticketId)
+      if (!cusTicket || cusTicket.status === -1) {
+          return res.json({
+              message: "Có lỗi xảy ra",
+          });
+      }      
+      let overPrice = 0;
+      const game = cusTicket.game.forEach((item) => overPrice+=item.gameId.price *item.quantity);
+      console.log(game)
 
-//     const ticket = await User_ticket.findById(data.idUserTicket);
+    if(ticket.timeLimit){
+        const timeCheckIn=new Date(cusTicket.createdAt);
+        const timeCheckOut = new Date();
+        console.log(timeCheckIn , timeCheckOut)
+        const time = Math.abs(timeCheckOut - timeCheckIn) / 1000 / 60;
+        console.log(time)
+        if(time>ticket.timeLimit){
+          const overTime=Math.floor((time-ticket.timeLimit)/30)*50000;
+          overPrice += overTime;
+        }
+    }
+    const checkedTicket = await CusTicket.findOneAndUpdate({_id: req.params.id},{ $set: { updatedAt : Date.now ,price: cusTicket.price + overPrice , overPrice: overPrice, status: -1} }, { new: true});
 
-//     if (!ticket) {
-//       res.json({
-//         message: "Có lỗi xảy ra",
-//       });
-//     }
-
-//     const titleTicket = await Ticket.findOne({
-//       type: { $elemMatch: { _id: ticket.id_ticket } },
-//     });
-
-//     // let priceTicket=titleTicket.type.find((item,index)=>item._id==ticket.id_ticket).price;
-//     let priceTicket=ticket.price;
-//     const checkVipUser=await User.findById(ticket.id_user);
-//     if(checkVipUser){
-//     if(checkVipUser.is_vip){
-//       sale.push({content:"Vip",sale:"20"});
-//       priceTicket=priceTicket-priceTicket*0.2
-//     }
-
-//     const participants = await User_event.find({ id_user: ticket.id_user });
-//     const Idevents = participants.map((item, index) => item.id_event);
-//     const events = await Event.find({ _id: { $in: Idevents } }).sort({discount:-1});
-
-//     if(participants){
-//       sale.push({content:"Event",sale:"20"});
-//       priceTicket=priceTicket-priceTicket*events[0].discount/100;
-//     }
-//   }
-//     let phat=titleTicket.type[0]
-//     if(ticket.id_ticket==phat._id){
-//         const timeCheckIn=new Date(ticket.time_checkin);
-//         const timeCheckOut=new Date(data.time_checkout);
-//         const time=Math.abs(timeCheckOut-timeCheckIn)/1000/60-2*60;
-//         if(time>=0){
-//           const overTime=50000/30*time;
-//           priceTicket +=overTime;
-//         }
-//     }
-
-//     await ticket.updateOne({ $set: { time_checkout: data.time_checkout,price:priceTicket } });
-
-//     res.status(200).json({ status: true, message: "Checkout success",ticket,priceTicket });
-//   } catch (error) {
-//     res.json({
-//       message: "Có lỗi xảy ra",
-//       error: error.message,
-//     });
-//   }
-// };
+    res.status(200).json({ status: true, message: "Checkout success",checkedTicket});
+  } catch (error) {
+    res.json({
+      message: "Có lỗi xảy ra",
+      error: error.message,
+    });
+  }
+};
 
 // //Tra cứu thông tin vé user
 // export const searchUsers = async (req, res, next) => {
