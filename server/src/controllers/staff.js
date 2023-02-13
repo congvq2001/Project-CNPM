@@ -104,29 +104,36 @@ export const checkoutTicket = async (req, res, next) => {
 };
 
 // //Tra cứu thông tin vé user
-export const searchUsers = async (req, res, next) => {
-  try {
-    const phoneNumber = req.body.phone;
-    const eventId = req.params.id
-    const findUser = await Customer.findOne({ phone: phoneNumber }).select('_id');
-    const user = await CustomerEvent.findOne({ eventId: eventId, cusId: findUser})
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Not found user" });
-    }
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Search user success",
-        result: user
-      });
-  } catch (error) {
-    console.log(error)
-    res.json({
-      message: "Có lỗi xảy ra",
-      error: error.message,
-    });
-  }
-};
+// export const searchUsers = async (req, res, next) => {
+//   try {
+//     const phoneNumber = req.body.phoneNumber;
+
+//     const user = await User.find(
+//       { phoneNumber: { $regex: ".*" + phoneNumber + ".*" } },
+//       {
+//         phoneNumber: 1,
+//       }
+//     );
+//     if (user.length == 0) {
+//       return res
+//         .status(404)
+//         .json({ success: false, message: "Not found user" });
+//     }
+//     const listUser = user.map((item, index) => {
+//       return item.phoneNumber;
+//     });
+
+//     res
+//       .status(200)
+//       .json({
+//         success: true,
+//         message: "Search user success",
+//         result: listUser,
+//       });
+//   } catch (error) {
+//     res.json({
+//       message: "Có lỗi xảy ra",
+//       error: error.message,
+//     });
+//   }
+// };

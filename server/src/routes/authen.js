@@ -44,8 +44,7 @@ import {
   getSpecificUser,
   getEventTickets,
   getAllTicket,
-  addGameToCusTicket,
-  searchUsers
+  addGameToCusTicket
   // UserBuyTicketWithoutToken
 } from "../controllers"
 import {
@@ -121,7 +120,6 @@ router.get("/event", getAllEvent)
 router.put("/staff/checkin", checkInTicket)
 router.put("/staff/checkout/:id", checkoutTicket)
 router.put("/staff/addGame/:id", addGameToCusTicket)
-router.post("/staff/searchByPhone/:id",searchUsers)
 
 router.get("/userTicket/:id", getSpecificTicket)
 // router.get("/iduser/:phoneNumber", getSpecificUser)
