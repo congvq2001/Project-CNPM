@@ -1,7 +1,7 @@
 import express from 'express';
 import {handleError} from '../middlewares';
 import demoRouter from './demo';
-import authenRouter from './authen.js';
+import authenRouter from './authen';
 
 const router = express.Router();
 
