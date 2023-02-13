@@ -8,7 +8,6 @@ export default function SignUp() {
     const [nbphone, setNbphone] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [address, setAddress] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("");
 
     let navi=useNavigate();
@@ -16,11 +15,10 @@ export default function SignUp() {
     const handleRegister=async (e)=>{
         e.preventDefault();
         const data={
-            phone:nbphone,
+            phoneNumber:nbphone,
             email,
             password,
-            name: name,
-            address
+            name:name,
         }
         if(password===confirmPassword){
             try{
@@ -28,8 +26,7 @@ export default function SignUp() {
                 console.log(res);
                 // if(res.data.success){
                     localStorage.setItem("accessToken",res.data.accessToken);
-                localStorage.setItem("nameUser", res.data.data.name);
-                localStorage.setItem("id",res.data.data._id )
+                    localStorage.setItem("nameUser",res.data.data.name);
                     alert("Đăng ký thành công");
                     navi("/user");
                 // }
@@ -58,8 +55,7 @@ export default function SignUp() {
                                 type="text" 
                                 className="form-control" 
                                 placeholder="Enter your name" 
-                                onChange={(e) => setName(e.target.value)}
-                                required
+                                onChange={(e)=>setName(e.target.value)}
                             />
                         </div>
 
@@ -69,8 +65,7 @@ export default function SignUp() {
                                 type="Phone number" 
                                 className="form-control" 
                                 placeholder="Enter your phone number" 
-                                onChange={(e) => setNbphone(e.target.value)}
-                                required
+                                onChange={(e)=>setNbphone(e.target.value)}
                             />
                         </div>
 
@@ -80,18 +75,7 @@ export default function SignUp() {
                                 type="email" 
                                 className="form-control" 
                                 placeholder="Enter email" 
-                                onChange={e => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
-
-                         <div className="form-group">
-                            <label>Address</label>
-                            <input 
-                                type="text" 
-                                className="form-control" 
-                                placeholder="Enter address" 
-                                onChange={e=>setAddress(e.target.value)}
+                                onChange={e=>setEmail(e.target.value)}
                             />
                         </div>
 
@@ -101,8 +85,7 @@ export default function SignUp() {
                                 type="password" 
                                 className="form-control" 
                                 placeholder="Enter password" 
-                                onChange={e => setPassword(e.target.value)}
-                                required
+                                onChange={e=>setPassword(e.target.value)}
                             />
                         </div>
 
@@ -112,8 +95,7 @@ export default function SignUp() {
                                 type="password" 
                                 className="form-control" 
                                 placeholder="Confirm password"
-                                onChange={e => setConfirmPassword(e.target.value)}    
-                                required
+                                onChange={e=>setConfirmPassword(e.target.value)}    
                             />
                         </div>
 

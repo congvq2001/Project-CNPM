@@ -24,7 +24,6 @@ export default function CustomerHeader() {
   const handleLogout=()=>{
     localStorage.removeItem("accessToken");
     localStorage.removeItem("nameUser");
-    localStorage.removeItem("id")
     navi("/user/home");
   }
 
@@ -43,10 +42,9 @@ export default function CustomerHeader() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to="/user/event">Sự kiện</NavLink>
-              </li>
-                {/* <li className="nav-item">
+              </li><li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to={login?"/user/tickbooking":"/login"}>Đặt vé</NavLink>
-              </li> */}
+              </li>
              
             </ul>
             <form className="d-flex">

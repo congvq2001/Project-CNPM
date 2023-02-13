@@ -26,34 +26,54 @@ export default function Event() {
         .catch((error) => {
             alert("eror");
         })
-        fetchevjoined();
-    }, []);
-    
+    },[]);
+
     useEffect(() => {
+          
           if(accessToken){
             setLogin(true);
           } 
           else setLogin(false); 
       },[localStorage.getItem("accessToken")])
 
-    const handleSubmit = async (e) => {
+    const handleSubmit =async(e)=>{
         e.preventDefault()
         if(!login){
             navi("/login");
         }else{
-            navi("/user/tickbooking")
+            try{
+                const res=await axios.post("http://localhost:5000/api/v1/userEvent",
+                {
+                    id_event:eventid
+                },
+                {
+                headers:{
+                    authorization: `Bearer ${accessToken}`
+                }
+                })
+                console.log(res)
+                if(res.data.success){
+                    alert("tham gia thanh cong")
+                    fetchevjoined();
+                }else alert("that bai")
+            }catch(err){
+                alert("err")
+            }
         }
     }
 
-    
+    useEffect(() => {
+        fetchevjoined();
+      },[]);
 
     const fetchevjoined=async()=>{
         try{
-        const res=await axios.get("http://localhost:5000/api/v1/customerEvent?o=1",{
+        const res=await axios.get("http://localhost:5000/api/v1/user/event",{
             headers:{
               authorization: `Bearer ${accessToken}`
             }
         })
+        console.log(res)
         if(res.data.success){
             seteventJoined(res.data.result);
         }
@@ -69,7 +89,7 @@ export default function Event() {
         })
         return check;
     }
-    console.log(event.timeStart);
+
     
     return (
             <div style={{marginTop:"30px",marginBottom:"50px"}} className="inner2">
@@ -78,27 +98,37 @@ export default function Event() {
                 <hr size="1"  color="gray"/>  
                 <p style={{fontSize:"19px",fontWeight:"bold"}}>{event.description}</p>
                 <p>{event.detail}</p>
-                {event.image &&
-                    <Carousel>
-                        {event.image.map((item, index) => 
-                            <Carousel.Item key={index}>
-                                <img
-                                    className="d-block w-100"
-                                    src={item}
-                                    alt="img"
-                                />
-                            </Carousel.Item>
-                        )}
-                    </Carousel>
-                }
+                <Carousel>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={event.image[0]}
+                        alt="First slide"
+                    />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={event.image[1]}
+                        alt="Second slide"
+                        />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                        className="d-block w-100"
+                        src={event.image[2]}
+                        alt="Third slide"
+                        />
+                    </Carousel.Item>
+                </Carousel>
                 <br/>
-                <p style={{fontSize:"15px"}}>Thời gian bắt đầu: {event.timeStart}</p>
-                <p style={{fontSize:"15px"}}>Thời gian kết thúc: {event.timeEnd}</p>
+                <p style={{fontSize:"15px"}}>Thời gian bắt đầu: {event.time_start}</p>
+                <p style={{fontSize:"15px"}}>Thời gian kết thúc: {event.time_end}</p>
                 <br/>
-                <p style={{ fontSize: "18px", color: "green" }}>Giá: {event.price}</p>
-                <p style={{ fontSize: "18px", color: "green" }}>Discount: 20%</p>
+                <p style={{fontSize:"18px",color:"green"}}>Khuyến mãi: {event.discount}%</p>
    
                 <ButtonToolbar className="justify-content-between" aria-label="Toolbar with Button groups">
+                    <ButtonGroup/>
                     <ButtonGroup>
                         {
                             checkjoin(event._id)
@@ -115,7 +145,7 @@ export default function Event() {
                                 aria-describedby="btnGroupAddon2"
                                 onClick={(e)=>handleSubmit(e)}
                             >
-                            Dat Ve
+                            Tham gia sự kiện
                             </button>
                         }  
                     </ButtonGroup>

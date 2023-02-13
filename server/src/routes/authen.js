@@ -45,8 +45,7 @@ import {
   getEventTickets,
   getAllTicket,
   addGameToCusTicket,
-  searchUsers,
-  getUserInfo
+  searchUsers
   // UserBuyTicketWithoutToken
 } from "../controllers"
 import { createFeedBack, deleteFeedback, locFeedback, viewFeedback } from "../controllers/feedback"
@@ -91,10 +90,11 @@ router.get("/game", getGame)
 router.get("/game/:id", getOneGame)
 router.post("/game", createGame)
 router.patch("/game/:id", updateGame)
+router.post("/customerEvent/:id", verifyToken, UserRegisterEvent)
 router.delete("/game/:id", deleteGame)
 
 
-
+router.get("/event/user/:id", participantsEvent)
 
 router.get("/staff",verifyToken, isManager, getStaffs)
 router.get("/staff/:id",verifyToken,isAuth, getOneStaff)
@@ -104,13 +104,10 @@ router.post("/staff", verifyToken, isManager, createStaff)
 
 router.get("/customer",verifyToken, isAuth, isManager, getCustomers)
 router.post("/customer",verifyToken, isManager, createUser)
+router.get("/customerEvent", verifyToken, userJoinEvents)
 router.patch("/customer/:id",verifyToken, isAuth, updateUser)
 router.delete("/customer/:id",verifyToken, isAuth, deleteUser)
-router.get("/customer/:id", verifyToken, isAuth, getSpecificUser)
-router.get("/customerInfo",verifyToken,getUserInfo )
-
-router.post("/customerEvent/:id", verifyToken, UserRegisterEvent)
-router.get("/customerEvent", verifyToken, userJoinEvents)
+router.get("/customer/:id",verifyToken,isAuth, getSpecificUser)
 
 router.post("/event", createEvent) 
 router.get("/event/:id", getOneEvent)
@@ -118,7 +115,6 @@ router.patch("/event/:id", updateEvent)
 router.delete("/event/:id", deleteEvent)
 router.get("/latestEvent", latestEvents)
 router.get("/event", getAllEvent)
-router.get("/event/user/:id", participantsEvent)
 
 //router.post("/user-buy-ticket", verifyToken, UserBuyTicket)
 //router.post("/ticket-vip", createVipTicket)

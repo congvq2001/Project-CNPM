@@ -7,7 +7,7 @@ const customerSchema = mongoose.Schema({
     name: {type:String, required: true},
     phone: { type: String ,required: true, unique: true},
     address: { type: String },
-    status: { type: Boolean, default: true },
+    status: { type: Boolean, default: false },
     loyalty: {type: Number, default: 0},
     isVip: { type: Boolean, default: false },
     timeVip: {
