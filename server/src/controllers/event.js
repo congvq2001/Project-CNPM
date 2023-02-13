@@ -36,14 +36,7 @@ export const updateEvent = handleAsync(async (req, res) => {
       detail: req.body.detail,
       image: req.body.image,
       name: req.body.name,
-      price: req.body.price
-    }, { new: true });
-    await Ticket.updateOne({ eventId: data._id }, {
-      $set: {
-        name: `Ve cua su kien ${data.name}`,
-        price: data.price
-      }
-    }, { new: true })
+    }, {new: true});
     if (!data) {
       return res.json({
         message: "Cập nhật thất bại",
@@ -65,7 +58,7 @@ export const updateEvent = handleAsync(async (req, res) => {
 
 export const deleteEvent = handleAsync(async (req, res) => {
   try {
-    const data = await Event.findById(req.params.id);
+    const data = await Event.findByIdAndRemove(req.params.id);
     if (!data) {
       return res.json({
         message: "Xóa thất bại",
@@ -86,24 +79,26 @@ export const deleteEvent = handleAsync(async (req, res) => {
 
 export const UserRegisterEvent = handleAsync(async (req, res) => {
   try {
-    const isExistTicket = await Event.findById(req.params.id);
-    const isExistUser = await Customer.findById(req.user.userId);
+    const isExistTicket = await Event.findById(req.body.id_event);
+    const isExistUser = await User.findById(req.user.userId);
     if (!isExistTicket && !isExistUser) {
       return res.status(200).json({
         status: 404,
         message: "Vé hoặc người mua vé không tồn tại",
       });
     }
-    const ev = { quantity: req.body.quantity , cusId: req.user.userId ,eventId:req.params.id };
-    const data = new CustomerEvent(ev);
+    const ev = { ...req.body, id_user: req.user.userId };
+    const data = new User_event(ev);
+    const { description, image, detail, ...event } = isExistTicket._doc;
+    const { password, createdAt, email, ...users } = isExistUser._doc;
+
     await data.save();
     res.json({
       success: true,
-      message: "Dat ve su kien thành công",
-      data
+      message: "Mua vé thành công",
+      data: { ...users, ...event },
     });
   } catch (error) {
-    console.log(error)
     res.json({
       message: "Có lỗi xảy ra",
       error,
@@ -174,11 +169,11 @@ export const participantsEvent = async (req, res, next) => {
         .status(404)
         .json({ success: false, message: "Not Found Event" });
 
-    const participants = await CustomerEvent.find({ eventId: eventId });
+    const participants = await User_event.find({ id_event: eventId });
 
-    const userId = participants.map((item, index) => item.cusId);
+    const userId = participants.map((item, index) => item.id_user);
 
-    const users = await Customer.find({ _id: { $in: userId } }, { password: 0 });
+    const users = await User.find({ _id: { $in: userId } }, { password: 0 });
 
     res.status(200).json({
       success: true,
