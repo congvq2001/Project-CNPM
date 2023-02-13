@@ -29,6 +29,7 @@ export const validateSignup = handleAsync(async (req, res, next) => {
 
 export const validateSignupStaff = handleAsync(async (req, res, next) => {
   console.log(req.body)
+
   try {
     await signupInputStaff.validateAsync(req.body)
     next()
@@ -57,11 +58,6 @@ export const signedIn = async (req, res, next) => {
     next()
   })
 }
-
-export const isManager = async (req, res, next) => {
-  
-}
-
 
 export const validateViewIncome = handleAsync(async (req, res, next) => {
   console.log(req.body)
