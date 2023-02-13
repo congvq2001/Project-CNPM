@@ -69,7 +69,7 @@ export default function Facilities(){
                   <td>{iteam.name}</td>
                   <td>{iteam.price}</td>
                   <td className="text-center" >
-                    <Button variant="outline-secondary" style= {{ border: `none` }} onClick={()=>navi(`/manager/editservice/61eaafd99cc06741fc0d4cda/${iteam._id}`)}>
+                    <Button variant="outline-secondary" style= {{ border: `none` }} onClick={()=>navi(`/manager/editservice/${iteam._id}`)}>
                       <BsPen/>
                     </Button>
                                         <Button variant="outline-danger" style= {{ border: `none`, marginLeft:'20px' }} onClick={()=>deleteRow(iteam._id)}>

@@ -6,21 +6,26 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function EditService() {
     const [nameTicket, setNameTicket] = useState("");
     const [price, setPrice] = useState(1);
+    const [timeLimit, setTimeLimit] = useState(0);
+    const [type, setType] = useState("")
 
     let navi = useNavigate();
-    let {idloaive,idve} = useParams();
+    let {idve} = useParams();
+
+    const checkType = (t) => {
+        if (t == 'Event') return false
+        return true
+    }
 
     useEffect(() => {
         const fetchfc = async ()=>{
-        let res=await axios.get(`http://localhost:5000/api/v1/ticket/${idloaive}`);
-        if(res.data.success){
-            const list=res.data.result.type
-            list.map(iteam=>{
-                if(iteam._id===idve){
-                    setNameTicket(iteam.nameTicket)
-                    setPrice(iteam.price)
-                }
-            })
+        let res=await axios.get(`http://localhost:5000/api/v1/ticket/${idve}`);
+        if (res.data.success) {
+            console.log(res.data.result);
+            setNameTicket(res.data.result.name)
+            setPrice(res.data.result.price)
+            setTimeLimit(res.data.result.timeLimit)
+            setType(res.data.result.ticketType)
         }else{
             alert("that bai")
         }
@@ -32,9 +37,9 @@ export default function EditService() {
         e.preventDefault();
         if(nameTicket&&price){
             try{
-                const res=await axios.put(`http://localhost:5000/api/v1/ticket/${idloaive}/${idve}`,
+                const res=await axios.patch(`http://localhost:5000/api/v1/ticket/${idve}`,
                                             {
-                                                nameTicket,
+                                                name: nameTicket,
                                                 price
                                             }
                             ) 
@@ -78,6 +83,23 @@ export default function EditService() {
                         onChange={e=>setPrice(e.target.value)}
                     />
                     </InputGroup>
+
+                    {
+                        checkType(type)
+                        ?<div>
+                        <Form.Label>Giới hạn thời gian</Form.Label>
+                        <InputGroup className="mb-3">
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Phút"
+                            value={timeLimit}
+                            onChange={e=>setTimeLimit(e.target.value)}
+                        />
+                        </InputGroup></div>
+                            :
+                            null 
+                    }
 
                 <button onClick={(e)=>handleSubmit(e)} style={{paddingTop : '10px'}} className="btn btn-dark btn-lg btn-block">Submit</button>
                 </Form>
