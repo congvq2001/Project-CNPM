@@ -1,35 +1,36 @@
 import Joi from "joi"
 // import { Staff } from "../models"
 
-const phone = Joi.string().required()
+const phoneNumber = Joi.string().length(10).required()
 const email = Joi.string().min(1).max(50)
 const password = Joi.string().min(1).max(20).required()
 const name = Joi.string().min(1).max(20).required()
-const address = Joi.string()
-const role = Joi.string().required()
+const role = Joi.number().required()
+const salary = Joi.number().required()
 const time_from = Joi.date().required()
 const time_to = Joi.date().required()
+// const staff_code = Joi.string().lowercase().required()
 
 export const createLogin = Joi.object({
-  email,
+  phoneNumber,
   password,
 })
 
 export const signupInput = Joi.object({
-  phone,
+  phoneNumber,
   email,
   password,
   name,
-  address
 })
 
 export const signupInputStaff = Joi.object({
+  // staff_code,
+  phoneNumber,
   email,
   password,
-  phone,
   name,
-  address,
-  role
+  role,
+  salary,
 })
 
 export const incomeInput = Joi.object({
