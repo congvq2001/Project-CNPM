@@ -8,13 +8,15 @@ import axios from "axios";
 export default function StaffManage(){
 
   const [data, setData] = useState([]);
-
+  const accessToken = localStorage.getItem('accessToken')
 
   let navi=useNavigate();
 
   useEffect(() => {
     async function fetchdata(){
-      let data=await axios.get("http://localhost:5000/api/v1/staff");
+      let data=await axios.get("http://localhost:5000/api/v1/staff", { headers:{
+              authorization: `Bearer ${accessToken}`
+            } });
       setData(data.data.data);
       console.log(data.data);
     }
@@ -22,9 +24,9 @@ export default function StaffManage(){
   },[]);
 
   const checkRole =(role)=>{
-    if(role==0){
+    if(role=='quanLy'){
       return "Quản lý";
-    }else if(role==1){
+    }else if(role=='nvQuay'){
       return "Nhân viên quầy";
     }else{
       return "Nhân viên lễ tân";
@@ -33,7 +35,9 @@ export default function StaffManage(){
 
   const deleteRow=async(id) =>{
       try{
-        const res=await axios.delete(`http://localhost:5000/api/v1/staff/${id}`)
+        const res=await axios.delete(`http://localhost:5000/api/v1/staff/${id}`, { headers:{
+              authorization: `Bearer ${accessToken}`
+            } })
         console.log(res);
         if(res.data.success){
           
@@ -57,7 +61,6 @@ export default function StaffManage(){
             <th>Mã nhân viên</th>
             <th>Họ và tên</th>
             <th>Chức vụ</th>
-            <th>Lương</th>
             <th>Số điện thoại</th>
             
           </tr>
@@ -76,8 +79,7 @@ export default function StaffManage(){
                       checkRole(staf.role)
                     }
                   </td>
-                  <td>{staf.salary}</td>
-                  <td>{staf.phoneNumber}</td>
+                  <td>{staf.phone}</td>
                   <td className="text-center" >
                     <Button variant="outline-secondary" style= {{ border: `none` }} onClick={()=>navi(`/manager/suanv/${staf._id}`)}>
                       <BsPen/>

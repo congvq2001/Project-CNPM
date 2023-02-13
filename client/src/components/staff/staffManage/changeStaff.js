@@ -4,45 +4,46 @@ import {Form, Col, Row, InputGroup, FormControl} from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function ChangeStaff() {
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phone, setphone] = useState("");
     const [name, setName] = useState("");
-    const [role, setRole] = useState(0);
+    const [role, setRole] = useState("");
     const [email, setEmail] = useState("");
-    const [salary, setSalary] = useState(0);
     const [password, setPassword] = useState("");
-
+      const accessToken = localStorage.getItem('accessToken')
     let navi=useNavigate();
     let { idnv }=useParams();
 
 
     useEffect(() => {
         const fetchnv = async ()=>{
-        let datanv=await axios.get(`http://localhost:5000/api/v1/staff/${idnv}`);
+        let datanv=await axios.get(`http://localhost:5000/api/v1/staff/${idnv}`,{ headers:{
+              authorization: `Bearer ${accessToken}`
+            } });
         let data= datanv.data.data;
-        console.log(data)
+        
         setName(data.name);
         setEmail(data.email);
-        setSalary(data.salary);
-        setPhoneNumber(data.phoneNumber);
+        setphone(data.phone);
         setRole(data.role);
       }
-      fetchnv();
+        fetchnv();
     }, []);
-    console.log(role);
+    
     const handleSubmit = async (e)=>{
         e.preventDefault();
-      if(phoneNumber&&name&&(role+1)&&email&&(salary+100)){
+      if(phone&&name&&role&&email){
           if(password){
             try{
                 let res=await axios.patch(`http://localhost:5000/api/v1/staff/${idnv}`,
                     {
-                      phoneNumber,
+                      phone,
                       password,
                       name,
                       email,
                       role,
-                      salary
-                    })
+                    },{ headers:{
+              authorization: `Bearer ${accessToken}`
+            } })
                 
                 if(res.data.success){
                     alert("sua thong tin thanh cong")
@@ -57,12 +58,13 @@ export default function ChangeStaff() {
             try{
                 let res=await axios.patch(`http://localhost:5000/api/v1/staff/${idnv}`,
                     {
-                      phoneNumber,
+                      phone,
                       name,
                       email,
-                      role,
-                      salary
-                    })
+                      role
+                    },{ headers:{
+              authorization: `Bearer ${accessToken}`
+            } })
                 if(res.data.success){
                     alert("sua thong tin thanh cong")
                     navi("/manager/quanlynv")
@@ -82,16 +84,6 @@ export default function ChangeStaff() {
             <div className="db">
                 
                     <h3>Thay đổi thông tin nhân viên</h3>
-                    <Form.Label>Họ nhân viên</Form.Label>
-                    <InputGroup className="mb-3">
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Nhập họ nhân viên"
-                        value={name}
-                        onChange={e=>setName(e.target.value)}
-                    />
-                    </InputGroup>
                     <Form.Label>Tên nhân viên</Form.Label>
                     <InputGroup className="mb-3">
                     <Form.Control
@@ -104,32 +96,20 @@ export default function ChangeStaff() {
                     </InputGroup>
                     <Form.Label>Chức vụ</Form.Label>
                     <InputGroup className="mb-3">
-                    <Form.Control as="select" defaultValue={role} onChange={(e)=>setRole(e.target.value)}>
-                        <option value={0}>Người quản lý</option>
-                        <option value={1}>Nhân viên quầy</option>
-                        <option value={2}>Nhân viên lễ tân</option>
+                    <Form.Control as="select" value={role} onChange={(e)=>setRole(e.target.value)}>
+                        <option value={'quanLy'}>Người quản lý</option>
+                        <option value={'nvQuay'}>Nhân viên quầy</option>
+                        <option value={'nvLeTan'}>Nhân viên lễ tân</option>
                     </Form.Control>
                     </InputGroup>
-
-                    <Form.Label>Lương</Form.Label>
-                    <InputGroup className="mb-3">
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Nhập lương"
-                        value={salary}
-                        onChange={e=>setSalary(e.target.value)}
-                    />
-                    </InputGroup>
-
                     <Form.Label>Số điện thoại</Form.Label>
                     <InputGroup className="mb-3">
                     <Form.Control
                         required
                         type="text"
                         placeholder="Nhập số điện thoại"
-                        value={phoneNumber}
-                        onChange={e=>setPhoneNumber(e.target.value)}
+                        value={phone}
+                        onChange={e=>setphone(e.target.value)}
                     />
                     </InputGroup>
 

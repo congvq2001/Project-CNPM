@@ -4,27 +4,25 @@ import {Form, Col, Row, InputGroup, FormControl} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 export default function AddEvent() {
-    const [phoneNumber, setPhoneNumber] = useState("");
+    const [phone, setphone] = useState("");
     const [name, setName] = useState("");
-    const [role, setRole] = useState(0);
+    const [role, setRole] = useState("quanLy");
     const [email, setEmail] = useState("");
-    const [salary, setSalary] = useState(0);
     const [password, setPassword] = useState("");
 
     let navi=useNavigate();
 
     const handleSubmit=async (e)=>{
         e.preventDefault();
-        if(phoneNumber&&name&&(role+1)&&email&&(salary+100)&&password){
+        if(phone&&name&&role&&email&&password){
             try{
                 const res=await axios.post("http://localhost:5000/api/v1/signup-staff",
                                             {
-                                                phoneNumber,
+                                                phone,
                                                 password,
                                                 name,
                                                 email,
-                                                role,
-                                                salary
+                                                role
                                             }
                             ) 
                 console.log(res);
@@ -39,21 +37,12 @@ export default function AddEvent() {
             alert("nhap form di bro");
         }
     }
+    console.log(role)
         return (
             <div className="db">
 
                 <Form id="form">
                     <h3>Thêm nhân viên</h3>
-                    <Form.Label>Họ nhân viên</Form.Label>
-                    <InputGroup className="mb-3">
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Nhập tên nhân viên"
-                        value={name}
-                        onChange={e=>setName(e.target.value)}
-                    />
-                    </InputGroup>
                     <Form.Label>Tên nhân viên</Form.Label>
                     <InputGroup className="mb-3">
                     <Form.Control
@@ -66,22 +55,11 @@ export default function AddEvent() {
                     </InputGroup>
                     <Form.Label>Chức vụ</Form.Label>
                     <InputGroup className="mb-3">
-                    <Form.Control as="select" defaultValue={role} onChange={(e)=>setRole(e.target.value)}>
-                        <option value={0}>Người quản lý</option>
-                        <option value={1}>Nhân viên quầy</option>
-                        <option value={2}>Nhân viên lễ tân</option>
+                        <Form.Control as="select" defaultValue={'quanLy'} onChange={(e)=>setRole(e.target.value)}>
+                        <option value='quanLy'>Người quản lý</option>
+                        <option value='nvQuay'>Nhân viên quầy</option>
+                        <option value='nvLeTan'>Nhân viên lễ tân</option>
                     </Form.Control>
-                    </InputGroup>
-
-                    <Form.Label>Lương</Form.Label>
-                    <InputGroup className="mb-3">
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Nhập lương"
-                        value={salary}
-                        onChange={e=>setSalary(e.target.value)}
-                    />
                     </InputGroup>
 
                     <Form.Label>Số điện thoại</Form.Label>
@@ -90,8 +68,8 @@ export default function AddEvent() {
                         required
                         type="text"
                         placeholder="Nhập số điện thoại"
-                        value={phoneNumber}
-                        onChange={e=>setPhoneNumber(e.target.value)}
+                        value={phone}
+                        onChange={e=>setphone(e.target.value)}
                     />
                     </InputGroup>
 
