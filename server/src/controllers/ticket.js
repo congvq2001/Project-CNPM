@@ -298,8 +298,8 @@ export const getIncome = handleAsync(async (req, res) => {
   try {
     let a=req.body.time_from
     let b= req.body.time_to
-    const query = await CusTicket.find({
-      updatedAt: 
+    const query = await User_ticket.find({
+      time_checkout: 
         { 
           $gte: new Date(req.body.time_from), 
           $lte: new Date(req.body.time_to) 

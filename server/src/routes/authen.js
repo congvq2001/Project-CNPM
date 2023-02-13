@@ -34,7 +34,7 @@ import {
   getCustomers,
   updateUser,
   deleteUser,
-  getIncome,
+  // getIncome,
   //getPersonalInfo,
   //personalUpdateUser,
   // getFacilities,
@@ -81,7 +81,7 @@ router.get("/eventTicket", getEventTickets)
 
 // router.put("/typeTicket/:id", createTypeTicket)
 // router.put("/ticket/:id/:typeId", updateTypeTicket)
-router.post("/ticketIncome", validateViewIncome, getIncome)
+// router.post("/ticketIncome", validateViewIncome, getIncome)
 
 // router.get("/facilities", getFacilities)
 // router.get("/facilities/:id", getOneFacility)
