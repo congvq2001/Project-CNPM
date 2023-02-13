@@ -245,8 +245,8 @@ export const userTicket = async (req, res, next) => {
   const userId = req.params.userId
   try {
     const data = await CusTicket.find({
-      cusId: userId,
-    }).populate('game.gameId').exec()
+      cusId: userId
+    }).populate('game.gameId ticketId').exec()
 
     res.status(200).json({
       success: true,
@@ -288,7 +288,7 @@ export const getIncome = handleAsync(async (req, res) => {
 
 export const getSpecificTicket = async (req, res) => {
   try {
-    const data = await CusTicket.findById(req.params.id).populate('game.gameId').exec()
+    const data = await CusTicket.findById(req.params.id).populate('game.gameId ticketId').exec()
     if (!data) {
       return res.status(404).json({
         success: false,

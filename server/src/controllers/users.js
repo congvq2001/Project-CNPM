@@ -47,11 +47,13 @@ export const updateUser = handleAsync(async (req, res) => {
     res.json({
       message: "Cập nhật thành công",
       newdata,
+      success: true
     })
   } catch (error) {
     res.json({
       message: "Có lỗi xảy ra",
       error,
+      success: false
     })
   }
 })
@@ -138,11 +140,22 @@ export const userJoinEvents = async (req, res, next) => {
   try {
     const userId = req.user.userId
     const participants = await CustomerEvent.find({ cusId: userId })
+    const option = req.query.o
 
     const Idevents = participants.map((item, index) => item.eventId)
-
-    const events = await Event.find({ _id: { $in: Idevents } })
-
+    let events;
+    switch (option) {
+      case "1":
+        events =  Event.find({ _id: { $in: Idevents } })
+        break;
+      case "-1":
+        events = Event.find({ _id: { $nin: Idevents } })
+        break;
+      default:
+        events =  Event.find({ _id: { $in: Idevents } })
+        break;
+    }
+    events = await events.exec()
     res.status(200).json({
       success: true,
       message: "Information of event participants",
@@ -167,6 +180,28 @@ export const getSpecificUser = async (req, res, next) => {
       success: true,
       message: "Get user success",
       data: data,
+    })
+  } catch (error) {
+    res.json({
+      message: "Có lỗi xảy ra",
+      error,
+    })
+  }
+}
+
+export const getUserInfo = async (req, res, next) => {
+  try {
+    const data = await Customer.findById(req.user.userId).select('-password')
+    if (!data) {
+      return res.status(404).json({
+        success: false,
+        message: "No user found",
+      })
+    }
+    res.status(200).json({
+      success: true,
+      message: "Get user success",
+      data,
     })
   } catch (error) {
     res.json({
