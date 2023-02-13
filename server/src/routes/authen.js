@@ -26,7 +26,7 @@ import {
   // deleteTypeTickte,
   UserRegisterEvent,
   participantsEvent,
-  checkInTicket,
+  // checkInTicket,
   // checkoutTicket,
   getStaffs,
   updateStaff,
@@ -116,7 +116,7 @@ router.get("/event", getAllEvent)
 //router.post("/user-buy-ticket", verifyToken, UserBuyTicket)
 // router.post("/ticket-vip", createVipTicket)
 
-router.put("/staff/checkin", checkInTicket)
+// router.put("/staff/checkin", checkInTicket)
 // router.put("/staff/checkout", checkoutTicket)
 
 // router.get("/userTicket/:id", getSpecificTicket)

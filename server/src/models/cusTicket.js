@@ -7,7 +7,8 @@ const cusTicketSchema = mongoose.Schema({
     cusName: { type: String},
     cusPhone: { type: String, required: true},
     isPreOrder: { type: Boolean, default: false},
-    isVip: { type: Boolean, required: true, default:false},
+    isVip: { type: Boolean, required: true },
+    loyalty: {type:Boolean ,required :true},
     price: { type: Number, required: true },
     game: [{
         gameId: {type: mongoose.Schema.Types.ObjectId, ref: 'gameTicket' },
