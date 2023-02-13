@@ -38,7 +38,7 @@ export default function Manager() {
                 <Route exact path="/services" element={<Services/>}></Route>
                 <Route exact path="/addvephi" element={<Addservice/>}></Route>
                 <Route exact path="/addVIP" element={<Addservice/>}></Route>
-                <Route exact path="/editservice/:idloaive/:idve" element={<Editservice/>}></Route>
+                <Route exact path="/editservice/:idve" element={<Editservice/>}></Route>
             </Routes>
         </div>
         </>

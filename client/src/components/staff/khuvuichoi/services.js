@@ -54,9 +54,9 @@ export default function Facilities(){
             <th>#</th>
             <th>Tên vé</th>
             <th>Giá vé</th>
-              <th style={{paddingLeft:'20px', width:'150px'}}>
-                <Button onClick={()=>navi(`/manager/addvephi`)}>Thêm vé quầy</Button>
-            </th>  
+            <th style={{paddingLeft:'20px', width:'150px'}}>
+
+            </th>     
           </tr>
         </thead>
         <tbody>
@@ -68,17 +68,14 @@ export default function Facilities(){
                   <td>{index+1}</td>
                   <td>{iteam.name}</td>
                   <td>{iteam.price}</td>
-                  {
-                    iteam.ticketType !== 'Event' ?
-                    <td className="text-center" >
-                      <Button variant="outline-secondary" style={{ border: `none` }} onClick={() => navi(`/manager/editservice/${iteam._id}`)}>
-                        <BsPen />
-                      </Button>
-                      <Button variant="outline-danger" style={{ border: `none`, marginLeft: '20px' }} onClick={() => deleteRow(iteam._id)}>
-                        <AiOutlineDelete />
-                      </Button>
-                    </td> : <></>
-                  }
+                  <td className="text-center" >
+                    <Button variant="outline-secondary" style= {{ border: `none` }} onClick={()=>navi(`/manager/editservice/${iteam._id}`)}>
+                      <BsPen/>
+                    </Button>
+                                        <Button variant="outline-danger" style= {{ border: `none`, marginLeft:'20px' }} onClick={()=>deleteRow(iteam._id)}>
+                      <AiOutlineDelete />
+                    </Button>
+                  </td>
                 </tr>
               )
             })
@@ -95,7 +92,6 @@ export default function Facilities(){
             <th>Giá vé</th>
             <th style={{paddingLeft:'20px', width:'150px'}}>
             </th>     
-            
           </tr>
         </thead>
         <tbody>
@@ -127,7 +123,6 @@ export default function Facilities(){
             <th>Code</th>
             <th>Tên trò chơi</th>
             <th>Giá</th>     
-            
           </tr>
         </thead>
         <tbody>

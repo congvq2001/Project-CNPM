@@ -88,10 +88,10 @@ console.log(dataDoanhThu)
                                 total+=data.price;
                                 return(
                                     <tr key={index}>
-                                        <th>{data.ticketId}</th>
+                                        <th>{data.id_ticket}</th>
                                         <th>{data.quantity}</th>
-                                        <th>{data.createdAt.substring(0,10)}</th>
-                                        <th>{data.cusId?data.cusId:"null"}</th>
+                                        <th>{data.time_checkout.substring(0,10)}</th>
+                                        <th>{data.id_user?data.id_user:"null"}</th>
                                         <th>{data.price}</th>
                                         <th></th>
                                     </tr>
