@@ -6,11 +6,10 @@ import "./changEvent.css"
 
 export default function ChangeEvent() {
     const [name, setName] = useState("");
-    const [time_start, setTime_start] = useState("");
-    const [time_end, setTime_end] = useState("");
+    const [timeStart, setTimeStart] = useState("");
+    const [timeEnd, setTimeEnd] = useState("");
     const [description, setDescription] = useState("");
-    const [detail, setDetail] = useState("");
-    const [discount, setDiscount] = useState(0);
+    const [price, setPrice] = useState(0);
     const [image1, setImage1] = useState("");
     const [image2, setImage2] = useState("");
     const [image3, setImage3] = useState("");
@@ -24,11 +23,10 @@ export default function ChangeEvent() {
           let data= datask.data.result;
           console.log(data);
           setName(data.name);
-          setTime_start(data.time_start.substring(0,10));
-          setTime_end(data.time_end.substring(0,10));
+          setTimeStart(data.timeStart.substring(0,10));
+          setTimeEnd(data.timeEnd.substring(0,10));
           setDescription(data.description);
-          setDetail(data.detail);
-          setDiscount(data.discount);
+          setPrice(data.price);
           setImage1(data.image[0]);
           setImage2(data.image[1]);
           setImage3(data.image[2]);
@@ -38,7 +36,7 @@ export default function ChangeEvent() {
 
       const handleSubmit = async (e)=>{
         e.preventDefault();
-        if(name&&time_start&&time_end&&description&&detail&&(discount+10)&&image1&&image2&&image3){
+        if(name&&timeStart&&timeEnd&&description&&price&&image1){
             try{
                 let res=await axios.patch(`http://localhost:5000/api/v1/event/${idsk}`,
                     {
@@ -48,11 +46,10 @@ export default function ChangeEvent() {
                             image3
                         ],
                         name,
-                        time_start,
-                        time_end,
+                        timeStart,
+                        timeEnd,
                         description,
-                        detail,
-                        discount
+                        price
                     })
                 console.log(res);
                 if(res.data.success){
@@ -91,8 +88,8 @@ export default function ChangeEvent() {
                             required
                             type="date"
                             placeholder="Nhập ngày bắt đầu"
-                            value={time_start}
-                            onChange={e=>setTime_start(e.target.value)}
+                            value={timeStart}
+                            onChange={e=>setTimeStart(e.target.value)}
                         />
                     </Col>
                     <Col>
@@ -101,20 +98,20 @@ export default function ChangeEvent() {
                             required
                             type="date"
                             placeholder="Nhập ngày kết thúc"
-                            value={time_end}
-                            onChange={e=>setTime_end(e.target.value)}
+                            value={timeEnd}
+                            onChange={e=>setTimeEnd(e.target.value)}
                         />
                     </Col>
                     <Col xs={3}>
-                        <Form.Label>Giảm giá</Form.Label>
+                        <Form.Label>Giá</Form.Label>
                         <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">%</InputGroup.Text>
+                        <InputGroup.Text id="basic-addon1">VND</InputGroup.Text>
                         <FormControl
                             required
                             type="number"
-                            placeholder="Nhập % giảm giá"
-                            value={discount}
-                            onChange={e=>setDiscount(e.target.value)}
+                            placeholder="Nhập giá"
+                            value={price}
+                            onChange={e=>setPrice(e.target.value)}
                         />
                         </InputGroup>
                     </Col>
@@ -127,16 +124,6 @@ export default function ChangeEvent() {
                         placeholder="Nhập mô tả"
                         value={description}
                         onChange={e=>setDescription(e.target.value)}
-                    />
-                    <Form.Label>Nội dung</Form.Label>
-                    <Form.Control 
-                        as="textarea" 
-                        rows={3} 
-                        required
-                        type="text"
-                        placeholder="Nhập nội dung"
-                        value={detail}
-                        onChange={e=>setDetail(e.target.value)}
                     />
                     <label style={{marginTop:"20px"}}>Chọn ảnh 1</label>
                     <InputGroup className="mb-3">
@@ -184,8 +171,6 @@ export default function ChangeEvent() {
                     </div>
                 <button style={{marginTop:"30px"}} onClick={(e)=>handleSubmit(e)} className="btn btn-dark btn-lg btn-block">Submit</button>
                 </Form>
-            
-
             </div>
 
         );
