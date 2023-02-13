@@ -13,7 +13,7 @@ export default function EventManage() {
     let navi=useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/v1/allEvent', {
+        fetch('http://localhost:5000/api/v1/event', {
             method: 'GET',
             }
         )
@@ -48,21 +48,23 @@ export default function EventManage() {
                     listEvent.map(ev=>
 
                         <Col key={ev._id} md={5} style={{marginBottom:"25px"}}>
-                            <Card className='av'>
-                            <div className='ribbon'><span>-{ev.discount}%</span></div>
-                                <Card.Img variant="top" src={ev.image[0]} height="270px" />
+                            <Card>
+                                <Card.Img variant="top" src={ev.image[0] ? ev.image[0] : 'https://hoianit.com/wp-content/uploads/2020/06/bana1.jpg'} height="270px" />
                                 <Card.Body height="100px">
-                                    <Card.Title>{ev.name}</Card.Title>
-                                    <Card.Text>
-                                        {ev.description}
+                                    <Card.Title>Tên : {ev.name}</Card.Title>
+                                    <Card.Text style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden" }}>
+                                        Mô tả: {ev.description}
                                     </Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
                                 <ButtonToolbar
                                     className="justify-content-between"
                                     aria-label="Toolbar with Button groups"
-                                >
-                                    <ButtonGroup className="mr-2">
+                                > 
+                                        <ButtonGroup className="mr-2" >
+                                            <Card.Text style={{alignItems:'center', display:'flex'}}>
+                                        Giá : {ev.price}
+                                    </Card.Text>
                                     </ButtonGroup>
                                     <ButtonGroup className="mr-2">
                                         <Button onClick={()=>navi( `/manager/suask/${ev._id}`)} variant="outline-secondary" style= {{ border: `none` }}>
@@ -72,7 +74,6 @@ export default function EventManage() {
                                             <AiOutlineDelete />
                                         </Button>
                                     </ButtonGroup>
-                            
                                 </ButtonToolbar>
                                 </Card.Footer>   
                             </Card>

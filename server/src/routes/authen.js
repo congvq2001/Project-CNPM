@@ -46,7 +46,8 @@ import {
   getAllTicket,
   addGameToCusTicket,
   searchUsers,
-  getUserInfo
+  getUserInfo,
+  getOtherGame
   // UserBuyTicketWithoutToken
 } from "../controllers"
 import { createFeedBack, deleteFeedback, locFeedback, viewFeedback } from "../controllers/feedback"
@@ -92,6 +93,7 @@ router.get("/game/:id", getOneGame)
 router.post("/game", createGame)
 router.patch("/game/:id", updateGame)
 router.delete("/game/:id", deleteGame)
+router.get('/otherGame',getOtherGame)
 
 
 

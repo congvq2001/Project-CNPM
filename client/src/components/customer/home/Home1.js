@@ -59,7 +59,7 @@ export default function Home1() {
                                 <Card className='homeCard' >
                                 <Card.Img className='homeCardImg' variant="top" src={evnt.image[0] ? evnt.image[0] : 'https://hoianit.com/wp-content/uploads/2020/06/bana1.jpg'} height="270px" />
                                     <Card.Body className="homeCardBody"> 
-                                        <Card.Title>{evnt.name}</Card.Title>
+                                        <Card.Title style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden" }}>{evnt.name}</Card.Title>
                                         <Card.Text>
                                             {evnt.description}
                                         </Card.Text>
