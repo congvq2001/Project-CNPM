@@ -43,14 +43,14 @@ export default function Login() {
                         localStorage.setItem("nameUser", res.data.result.name);
                         localStorage.setItem("id",res.data.result._id)
                         if(role==0){
-                            if(r=='quanLy'){
+                            if(r==0){
                                 navi("/manager");
                             } 
                         }else if(role==1){
-                            if(r=="nvQuay")
+                            if(r==1)
                                 navi("/staff");
                         }else if(role==2){
-                            if(r=="nvLeTan"){
+                            if(r==2){
                                 navi("/receptionist");
                             }      
                         }else{
