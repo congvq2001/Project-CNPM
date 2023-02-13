@@ -1,4 +1,4 @@
-import { Event, Customer, CustomerEvent, Ticket } from "../models";
+import { Event, Customer, CustomerEvent } from "../models";
 import { handleAsync } from "../utils";
 
 export const createEvent = handleAsync(async (req, res) => {
@@ -13,7 +13,6 @@ export const createEvent = handleAsync(async (req, res) => {
       price,
     });
     await data.save();
-    await Ticket.create({ ticketType: "Event", name: `Ve cua su kien ${data.name}`, price: data.price , eventId: data._id})
     res.json({
       success: true,
       message: "Tạo sự kiện thành công",
