@@ -135,11 +135,11 @@ export default function Facilities(){
                   <td>{iteam.code }</td>
                   <td>{iteam.name}</td>
                   <td>{iteam.price}</td>
-                  {/* <td className="text-center" >
+                  <td className="text-center" >
                     <Button variant="outline-secondary" style= {{ border: `none` }} onClick={()=>navi(`/manager/editservice/61eab0db9cc06741fc0d4ce6/${iteam._id}`)}>
                       <BsPen/>
                     </Button>
-                  </td> */}
+                  </td>
                 </tr>
               )
             })
