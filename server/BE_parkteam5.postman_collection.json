@@ -51,21 +51,11 @@
 				{
 					"name": "Sign Up",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4MDBjMzhmMDhkMDQ5NjQwMDY5MDAiLCJpYXQiOjE2NzYyMTkwNTB9.WQ_5OUkDKL10Jf-qgXDq5lax9_o_WFv9Ixzol_3M1yQ",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" :\"test4@test.com\", \r\n    \"phone\": \"0982947217\",\r\n    \"password\" : \"0\",\r\n    \"name\": \"Hung Nguyen\",\r\n    \"address\" : \"007 abc\"\r\n}",
+							"raw": "{\r\n    \"email\" :\"test2@test.com\", \r\n    \"phone\": \"0982947215\",\r\n    \"password\" : \"0\",\r\n    \"name\": \"Hung Nguyen\",\r\n    \"address\" : \"007 abc\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -707,13 +697,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/ticket/63e821e411864a026c47f5ba",
+							"raw": "{{url}}/ticket/63e8210b6f925b00f8dd25f8",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"ticket",
-								"63e821e411864a026c47f5ba"
+								"63e8210b6f925b00f8dd25f8"
 							]
 						}
 					},
@@ -872,36 +862,6 @@
 								"event",
 								"user",
 								"63e821e911864a026c47f5bc"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Search Cus By Phone",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"phone\" : \"0982947215\"}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/staff/searchByPhone",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"staff",
-								"searchByPhone"
 							]
 						}
 					},
@@ -1131,14 +1091,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/staff/addGame/63e8cd970d952a3bec704b18",
+							"raw": "{{url}}/staff/addGame/63e843c4e21d4b098c0fc14a",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"staff",
 								"addGame",
-								"63e8cd970d952a3bec704b18"
+								"63e843c4e21d4b098c0fc14a"
 							]
 						}
 					},
@@ -1156,120 +1116,6 @@
 							],
 							"path": [
 								"game"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Feedback",
-			"item": [
-				{
-					"name": "Create Feedback",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2U4MDBjMzhmMDhkMDQ5NjQwMDY5MDAiLCJpYXQiOjE2NzYyMTkwNTB9.WQ_5OUkDKL10Jf-qgXDq5lax9_o_WFv9Ixzol_3M1yQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"problem\" : \"Van de\",\r\n    \"idea\" : \"Van aasdzxc\",\r\n    \"star\" : \"7\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/feedback/user",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"feedback",
-								"user"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "View All Feedback",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/feedback/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"feedback",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Loc Feedback",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/feedback/find?match=Van&type=idea&sort=1&sortType=date",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"feedback",
-								"find"
-							],
-							"query": [
-								{
-									"key": "match",
-									"value": "Van"
-								},
-								{
-									"key": "type",
-									"value": "idea"
-								},
-								{
-									"key": "sort",
-									"value": "1"
-								},
-								{
-									"key": "sortType",
-									"value": "date"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete A Feedback",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/feedback/63e912f0f171ee1de49b6304",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"feedback",
-								"63e912f0f171ee1de49b6304"
 							]
 						}
 					},
