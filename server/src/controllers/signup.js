@@ -4,7 +4,12 @@ import { JWT_SECRET } from "../configs"
 import jwt from "jsonwebtoken"
 
 
-
+export const getUSer = handleAsync(async(req, res) => {
+    const users = await UserService.getAll();
+    res.json({
+        data: users
+    });
+});
 
 // export const createUser = handleAsync(async(req, res) => {
 //     const user = await UserService.create(req.body);

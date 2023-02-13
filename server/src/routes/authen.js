@@ -1,6 +1,7 @@
 import express from "express"
 import {
   checkLogin,
+  logout,
   createUser,
   checkLoginStaff,
   createStaff,
@@ -28,30 +29,28 @@ import {
   // participantsEvent,
   // checkInTicket,
   // checkoutTicket,
-  getStaffs,
-  updateStaff,
-  deleteStaff,
-  getCustomers,
-  updateUser,
-  deleteUser,
+  // getStaff,
+  // updateStaff,
+  // deleteStaff,
+  // getUSer,
+  // updateUser,
+  // deleteUser,
   // getIncome,
-  //getPersonalInfo,
-  //personalUpdateUser,
+  // getPersonalInfo,
+  // personalUpdateUser,
   // getFacilities,
   // userJoinEvents,
-  getOneStaff,
+  // getOneStaff,
   // getTicketTypes,
   // getSpecificTicket,
-  getSpecificUser,
+  // getSpecificUser,
   // UserBuyTicketWithoutToken
 } from "../controllers"
 import {
   validateLogin,
   validateSignup,
   validateSignupStaff,
-  verifyToken,
-  isAuth,
-  isManager,
+  signedIn,
   validateViewIncome,
 } from "../middlewares"
 
@@ -59,12 +58,12 @@ const router = express.Router()
 
 router.post("/login", validateLogin, checkLogin)
 router.post("/login-staff", validateLogin, checkLoginStaff)
-//router.post("/logout", logout)
+router.post("/logout", logout)
 router.post("/signup", validateSignup, createUser)
 router.post("/signup-staff", validateSignupStaff, createStaff)
 
-// router.get("/userInfo", verifyToken, isAuth, getPersonalInfo)
-// router.patch("/userInfo", verifyToken,isAuth, personalUpdateUser)
+// router.get("/userInfo", signedIn, getPersonalInfo)
+// router.patch("/userInfo", signedIn, personalUpdateUser)
 
 // router.post("/ticket", CreateTicket)
 // router.get("/ticket/:id", infoTicket)
@@ -91,18 +90,16 @@ router.post("/signup-staff", validateSignupStaff, createStaff)
 
 // router.get("/event/user/:id", participantsEvent)
 
-router.get("/staff",verifyToken, isManager, getStaffs)
-router.get("/staff/:id",verifyToken,isAuth, getOneStaff)
-router.patch("/staff/:id",verifyToken,isAuth, updateStaff)
-router.delete("/staff/:id", verifyToken, isAuth, deleteStaff)
-router.post("/staff", verifyToken, isManager, createStaff)
+// router.get("/staff", getStaff)
+// router.get("/staff/:id", getOneStaff)
+// router.patch("/staff/:id", updateStaff)
+// router.delete("/staff/:id", deleteStaff)
 
-router.get("/customer",verifyToken, isAuth, isManager, getCustomers)
-router.post("/customer",verifyToken, isManager, createUser)
-//router.get("/user/event", signedIn, userJoinEvents)
-router.patch("/customer/:id",verifyToken, isAuth, updateUser)
-router.delete("/customer/:id",verifyToken, isAuth, deleteUser)
-router.get("/customer/:id",verifyToken,isAuth, getSpecificUser)
+// router.get("/users", getUSer)
+// router.post("/users", createUser)
+// router.get("/user/event", signedIn, userJoinEvents)
+// router.patch("/users/:id", updateUser)
+// router.delete("/users/:id", deleteUser)
 
 // router.get("/event/:id", getOneEvent)
 // router.patch("/Event/:id", updateEvent)
