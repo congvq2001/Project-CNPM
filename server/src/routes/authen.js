@@ -48,7 +48,6 @@ import {
   searchUsers
   // UserBuyTicketWithoutToken
 } from "../controllers"
-import { createFeedBack, deleteFeedback, locFeedback, viewFeedback } from "../controllers/feedback"
 import {
   validateLogin,
   validateSignup,
@@ -127,10 +126,4 @@ router.post("/staff/searchByPhone/:id",searchUsers)
 router.get("/userTicket/:id", getSpecificTicket)
 // router.get("/iduser/:phoneNumber", getSpecificUser)
 // router.post("/userbuyticketwithouttoken", UserBuyTicketWithoutToken)
-
-router.post("/feedback/user", verifyToken, createFeedBack)
-router.get("/feedback", viewFeedback)
-router.post("/feedback/find", locFeedback)
-router.delete("/feedback/:id",deleteFeedback)
-
 export default router
