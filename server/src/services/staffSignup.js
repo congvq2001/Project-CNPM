@@ -1,7 +1,7 @@
 import { Staff } from "../models"
 
 export const getAll = async () => {
-  return await Staff.find({}).select("-password")
+  return await Staff.find({})
 }
 
 export const create = async (data) => {

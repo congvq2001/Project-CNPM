@@ -1,7 +1,7 @@
 import { handleAsync } from "../utils"
 import { StaffService } from "../services"
 
-export const getStaffs = handleAsync(async (req, res) => {
+export const getStaff = handleAsync(async (req, res) => {
   const staff = await StaffService.getAll()
   res.json({
     data: staff,
