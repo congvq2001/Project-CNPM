@@ -10,12 +10,15 @@ function TicketBooking() {
     let accessToken=localStorage.getItem("accessToken");
     
     useEffect(() => {
-        fetch("http://localhost:5000/api/v1/ticket/61eaafd99cc06741fc0d4cda", {
+        fetch("http://localhost:5000/api/v1/customerEvent?o=-1", {
             method: 'GET',
+            headers: {
+                authorization :`Bearer ${accessToken}`
+            }
         })
         .then(response => response.json())
         .then(data => {
-            setListTicket(data.result.type);
+            setListTicket(data.result);
         })
         .catch((error) => {
             alert("eror");
@@ -25,21 +28,18 @@ function TicketBooking() {
     useEffect(() => {
         listTicket.map(tk=>{
             if(tk._id===idTicket){
-                setDemoP(tk.price*quantity);
+                setDemoP(tk.price*quantity*0.8);
                 return;
             }
         })
-    }, [quantity,idTicket]);
+    }, [quantity, idTicket]);
+    
     
     const handleSubmit =async(e)=>{
-        e.preventDefault();
         if(idTicket&&quantity){
-            const res=await axios.post("http://localhost:5000/api/v1/user-buy-ticket",
+            const res=await axios.post(`http://localhost:5000/api/v1/customerEvent/${idTicket}`,
                                         {
-                                            id_ticket:idTicket,
-                                            quantity,
-                                            price:demoP,
-                                            is_paid:false        
+                                            quantity
                                         } 
                                         ,
                                         {
@@ -71,7 +71,7 @@ function TicketBooking() {
                         <option>Chọn loại vé</option>
                         {
                             listTicket.map(ticket=>
-                                <option key={ticket._id} value={ticket._id}>{ticket.nameTicket}</option>
+                                <option key={ticket._id} value={ticket._id}>{ticket.name}</option>
                             )
                         }
                     </Form.Control>
@@ -91,7 +91,7 @@ function TicketBooking() {
             </Col>
             
             <Col>
-            <p>Giá tiền dự kiến: {demoP} vnđ</p>
+            <p>Giá tiền dự kiến (Đặt trước): {demoP} vnđ</p>
                 <Button onClick={(e)=>handleSubmit(e)}>Đặt vé</Button>
             </Col>
             </Row>

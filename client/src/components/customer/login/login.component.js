@@ -5,14 +5,14 @@ import axios from "axios";
 
 export default function Login() {
     const [role, setRole] = useState(3)
-    const [nbphone, setNbphone] = useState("")
+    const [nbmail, setNbmail] = useState("")
     const [password, setPassword] = useState("")
 
     let navi=useNavigate();
 
     const hanleSignin= async (e)=>{
             e.preventDefault();
-            const data = { phoneNumber:nbphone,password:password };
+            const data = { email:nbmail,password:password };
             if(role==3){
                 try{
                     const res =await axios.post("http://localhost:5000/api/v1/login",data);
@@ -22,7 +22,8 @@ export default function Login() {
                             alert("Tài khoản tạm thời bị khóa. Vui lòng liên hệ khu vui chơi để kích hoạt tài khoản");
                         }else{
                             localStorage.setItem("accessToken",accessToken);
-                            localStorage.setItem("nameUser",res.data.result.name);
+                            localStorage.setItem("nameUser", res.data.result.name);
+                             localStorage.setItem("id",res.data.result._id)
                             navi("/user");
                         }
                     }else{
@@ -39,7 +40,8 @@ export default function Login() {
                     const r=res.data.result.role;
                     if(accessToken){
                         localStorage.setItem("accessToken",accessToken);
-                        localStorage.setItem("nameUser",res.data.result.name);
+                        localStorage.setItem("nameUser", res.data.result.name);
+                        localStorage.setItem("id",res.data.result._id)
                         if(role==0){
                             if(r==0){
                                 navi("/manager");
@@ -73,12 +75,12 @@ export default function Login() {
             <form>
                 <h3>Log in</h3>
                 <div className="form-group">
-                    <label>Phone number</label>
+                    <label>Email</label>
                     <input
-                        type="phone number" 
+                        type="text" 
                         className="form-control" 
-                        placeholder="Phone number" 
-                        onChange={e=>setNbphone(e.target.value)}
+                        placeholder="Email" 
+                        onChange={e=>setNbmail(e.target.value)}
                     />
                 </div>
                 <div className="form-group">
@@ -115,7 +117,7 @@ export default function Login() {
                     Sign in
                 </button>
                 <p className="forgot-password text-right">
-                    Forgot <a href="##">password?</a>
+                     <a href="/signup">New Customer ?</a>
                 </p>
             </form>
             </div>
