@@ -6,10 +6,11 @@ import "./changEvent.css"
 
 export default function AddEvent() {
     const [name, setName] = useState("");
-    const [timeStart, setTimeStart] = useState("");
-    const [timeEnd, setTimeEnd] = useState("");
+    const [time_start, setTime_start] = useState("");
+    const [time_end, setTime_end] = useState("");
     const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(0);
+    const [detail, setDetail] = useState("");
+    const [discount, setDiscount] = useState(0);
     const [image1, setImage1] = useState("");
     const [image2, setImage2] = useState("");
     const [image3, setImage3] = useState("");
@@ -18,7 +19,7 @@ export default function AddEvent() {
 
     const handleSubmit=async (e)=>{
         e.preventDefault();
-        if(name&&timeStart&&timeEnd&&description&&price&&image1){
+        if(name&&time_start&&time_end&&description&&detail&&discount&&image1&&image2&&image3){
             try{
                 let res=await axios.post("http://localhost:5000/api/v1/event",
                     {
@@ -28,10 +29,11 @@ export default function AddEvent() {
                             image3
                         ],
                         name,
-                        timeStart,
-                        timeEnd,
+                        time_start,
+                        time_end,
                         description,
-                        price
+                        detail,
+                        discount
 
                     })
                 if(res.data.success){
@@ -49,6 +51,8 @@ export default function AddEvent() {
     }
         return (
             <div style={{overflowY: 'scroll'}} className="db">
+
+            
                 <Form>
                 
                     <h3>Thêm sự kiện</h3>
@@ -67,8 +71,8 @@ export default function AddEvent() {
                             required
                             type="date"
                             placeholder="Nhập ngày bắt đầu"
-                            value={timeStart}
-                            onChange={e=>setTimeStart(e.target.value)}
+                            value={time_start}
+                            onChange={e=>setTime_start(e.target.value)}
                         />
                     </Col>
                     <Col>
@@ -77,20 +81,20 @@ export default function AddEvent() {
                             required
                             type="date"
                             placeholder="Nhập ngày kết thúc"
-                            value={timeEnd}
-                            onChange={e=>setTimeEnd(e.target.value)}
+                            value={time_end}
+                            onChange={e=>setTime_end(e.target.value)}
                         />
                     </Col>
                     <Col xs={3}>
-                        <Form.Label>Giá</Form.Label>
+                        <Form.Label>Giảm giá</Form.Label>
                         <InputGroup className="mb-3">
-                        <InputGroup.Text id="basic-addon1">VNĐ</InputGroup.Text>
+                        <InputGroup.Text id="basic-addon1">%</InputGroup.Text>
                         <FormControl
                         required
                         type="number"
-                        placeholder="Nhập giá"
-                        value={price}
-                        onChange={e=>setPrice(e.target.value)}
+                        placeholder="Nhập % giảm giá"
+                        value={discount}
+                        onChange={e=>setDiscount(e.target.value)}
                         />
                         </InputGroup>
                     </Col>
@@ -104,6 +108,16 @@ export default function AddEvent() {
                         placeholder="Nhập mô tả"
                         value={description}
                         onChange={e=>setDescription(e.target.value)}
+                    />
+                    <Form.Label>Nội dung</Form.Label>
+                    <Form.Control 
+                        as="textarea" 
+                        rows={3} 
+                        required
+                        type="text"
+                        placeholder="Nhập nội dung"
+                        value={detail}
+                        onChange={e=>setDetail(e.target.value)}
                     />
                     <label style={{marginTop:"20px"}}>Chọn ảnh 1</label>
                     <InputGroup className="mb-3">

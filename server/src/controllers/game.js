@@ -14,11 +14,6 @@ export const getGame = handleAsync(async (req, res) => {
   })
 })
 
-export const getOtherGame = handleAsync(async (req, res) => {
-  const data = await Game.find({ price: { $gt: 0 } })
-  res.status(200).json({result: data})
-})
-
 export const getOneGame = handleAsync(async (req, res) => {
   try {
     const game = await Game.findById(req.params.id)
