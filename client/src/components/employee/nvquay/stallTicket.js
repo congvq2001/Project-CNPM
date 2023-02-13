@@ -11,15 +11,15 @@ function StallTicket() {
     const [idTicket, setIdTicket] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [demoP, setDemoP] = useState(0);
-    const [cusTicket,setCusTicket] = useState("")
+
 
     useEffect(() => {
-        fetch("http://localhost:5000/api/v1/game/", {
+        fetch("http://localhost:5000/api/v1/ticket/61eab0db9cc06741fc0d4ce6", {
             method: 'GET',
         })
         .then(response => response.json())
         .then(data => {
-            setTicketList(data.result);
+            setTicketList(data.result.type);
         })
         .catch((error) => {
             alert("eror");
@@ -40,11 +40,14 @@ function StallTicket() {
         if(idTicket&&(quantity+1)){
             try{ 
                 let time_checkout=new Date();
-                let res=await axios.put(`http://localhost:5000/api/v1/staff/addGame/${cusTicket}`,
+                let res=await axios.put("http://localhost:5000/api/v1/staff/checkin",
                 {
-                    gameId :idTicket,
+                    id_ticket:idTicket,
                     quantity,
-                })
+                    price:demoP,
+                    is_paid:true,
+                    time_checkout
+                },)
                 console.log(res.data)
                 if(res.data.status){
                     alert("tạo vé thành công")
@@ -76,19 +79,19 @@ function StallTicket() {
                                 <option>Chọn loại vé</option>
                                 {
                                     ticketList.map((option) => 
-                                        <option key={option._id} value={option._id}>{option.name}</option>
+                                        <option key={option._id} value={option._id}>{option.nameTicket}</option>
                                     )
                                 }
                             </Form.Control>
-                            </Form.Group>
-                              <Form.Group>
-                            <Form.Label>Id vé {star}</Form.Label>
-                                    <Form.Control onChange={e => setCusTicket(e.target.value)} value={cusTicket} />
-                        </Form.Group>    
+                        </Form.Group>
                         <Form.Group>
                             <Form.Label>Số lượng{star}</Form.Label>
                             <Form.Control onChange={e=>setQuantity(e.target.value) } type="number" defaultValue="1" min="1"/>
                         </Form.Group>
+                        {/* <Form.Group>
+                            <Form.Label>Mã giảm giá</Form.Label>
+                            <Form.Control placeholder="vd. 2021DDD"/>
+                        </Form.Group> */}
                         <hr/>
                         <p>Giá tiền thanh toán: {demoP}vnđ</p>
                         <Button onClick={(e) => handleSubmit(e)}>Xác nhận</Button>

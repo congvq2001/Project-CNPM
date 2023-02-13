@@ -13,7 +13,7 @@ export const checkInTicket = async (req, res, next) => {
         cusId: cusId,
       });
       if (ticket) {
-        let checkInTicket = await CusTicket.create({
+        const checkInTicket = await CusTicket.create({
           ticketId,
           cusId,
           quantity: ticket.quantity,
@@ -22,11 +22,9 @@ export const checkInTicket = async (req, res, next) => {
           isPreOrder: true,
           isVip: cus.isVip,
           price: cus.isVip
-            ? data.price * ticket.quantity * 0.64
-            : data.price * ticket.quantity * 0.8,
+            ? data.price * ticket.quantity * 0.8
+            : data.price * ticket.quantity * 0.64,
         });
-        checkInTicket = await checkInTicket.populate('ticketId').execPopulate()
-        console.log(cus.isVip);
         return res
           .status(200)
           .json({
@@ -35,7 +33,7 @@ export const checkInTicket = async (req, res, next) => {
             data: checkInTicket,
           });
       } else {
-        let userTicket = await CusTicket.create({
+        const userTicket = await CusTicket.create({
           ticketId,
           cusId,
           quantity,
@@ -44,21 +42,19 @@ export const checkInTicket = async (req, res, next) => {
           isVip : cusId?.isVip ? true :false,
           price: cusId?.isVip ? data.price * quantity * 0.8 : data.price * quantity,
         });
-        userTicket = await userTicket.populate('ticketId').execPopulate()
         return res
           .status(200)
           .json({ status: true, message: "Checkin success", data: userTicket});
       }
     }
-    let userTicket = await CusTicket.create({
+    const userTicket = await CusTicket.create({
           ticketId,
           cusId,
           cusName,
           cusPhone,
           isVip :  cusId?.isVip ? true :false,
           price: cusId?.isVip ? data.price  * 0.8 : data.price ,
-    });
-    userTicket = await userTicket.populate('ticketId').execPopulate()
+        });
         return res
           .status(200)
           .json({ status: true, message: "Checkin success", data: userTicket});
@@ -77,8 +73,7 @@ export const checkoutTicket = async (req, res, next) => {
     const cusTicket = await CusTicket.findById(req.params.id).populate('game.gameId').exec();
     const ticket = await Ticket.findById(cusTicket.ticketId)
       if (!cusTicket || cusTicket.status === -1) {
-        return res.json({
-            status: false,
+          return res.json({
               message: "Có lỗi xảy ra",
           });
       }      
@@ -101,7 +96,7 @@ export const checkoutTicket = async (req, res, next) => {
 
     res.status(200).json({ status: true, message: "Checkout success",checkedTicket});
   } catch (error) {
-    res.json({status: false,
+    res.json({
       message: "Có lỗi xảy ra",
       error: error.message,
     });
@@ -112,19 +107,18 @@ export const checkoutTicket = async (req, res, next) => {
 export const searchUsers = async (req, res, next) => {
   try {
     const phoneNumber = req.body.phone;
-    const event = await Ticket.findById(req.params.id) 
-    const findUser = await Customer.findOne({ phone: phoneNumber });
-    if(!findUser) return res.status(404).json({success : 0,message: "Not found user"})
-    const user = await CustomerEvent.findOne({ eventId: event.eventId, cusId: findUser._id}).populate('eventId cusId')
+    const eventId = req.params.id
+    const findUser = await Customer.findOne({ phone: phoneNumber }).select('_id');
+    const user = await CustomerEvent.findOne({ eventId: eventId, cusId: findUser})
     if (!user) {
       return res
-        .status(200)
-        .json({ success: 2, message: "found user" , result: findUser});
+        .status(404)
+        .json({ success: false, message: "Not found user" });
     }
     res
       .status(200)
       .json({
-        success: 1,
+        success: true,
         message: "Search user success",
         result: user
       });
