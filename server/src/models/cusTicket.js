@@ -10,12 +10,11 @@ const cusTicketSchema = mongoose.Schema({
     isVip: { type: Boolean, required: true, default:false},
     price: { type: Number, required: true },
     game: [{
-        gameId: {type: mongoose.Schema.Types.ObjectId, ref: 'game' },
-        quantity: { type: Number , default: 1}
+        gameId: {type: mongoose.Schema.Types.ObjectId, ref: 'gameTicket' },
+        quantity: Number
         }
     ],
-    overPrice: { type: Number, default: 0 },
-    status: {type: Number, enum : [-1,0,1] ,default : 0}
+    overPrice: { type: Number, default: 0 }
 }, {timestamps: true})
 
 export const CusTicket =  mongoose.model('cusTicket', cusTicketSchema)

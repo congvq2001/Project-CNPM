@@ -246,15 +246,47 @@ export const userTicket = async (req, res, next) => {
   try {
     const data = await CusTicket.find({
       cusId: userId,
-    }).populate('game.gameId').exec()
+    })
+
+    const idTicket = data.map((item, index) => {
+      return item.ticketId
+    })
+
+    const tickets = await Ticket.find(
+      {
+        type: { $elemMatch: { _id: { $in: idTicket } } },
+      },
+      "type"
+    )
+
+    const listTick = []
+    tickets.map((item, index) => {
+      item.type.map((ticket, index) => {
+        listTick.push(ticket)
+      })
+    })
+
+    const result = []
+
+    data.map((item, index) => {
+      listTick.map((ticket, index) => {
+        if (ticket._id == item.id_ticket) {
+          const { updatedAt, ...other } = item._doc
+          result.push({
+            ...other,
+            nameTicket: ticket.nameTicket,
+            priceTicket: ticket.price,
+          })
+        }
+      })
+    })
 
     res.status(200).json({
       success: true,
       message: "Get user's ticket success",
-      result: data,
+      result: result,
     })
   } catch (error) {
-      console.log(error)
     res.json({
       message: "Có lỗi xảy ra",
       error,
@@ -278,7 +310,6 @@ export const getIncome = handleAsync(async (req, res) => {
       data: query,
     })
   } catch (error) {
-      console.log(error)
     res.json({
       message: "Có lỗi xảy ra",
       error,
@@ -288,7 +319,7 @@ export const getIncome = handleAsync(async (req, res) => {
 
 export const getSpecificTicket = async (req, res) => {
   try {
-    const data = await CusTicket.findById(req.params.id).populate('game.gameId').exec()
+    const data = await User_ticket.findById(req.params.id)
     if (!data) {
       return res.status(404).json({
         success: false,

@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const gameSchema = mongoose.Schema({
-    code: {type: String, required: true, unique: true },
+    code: String,
     name: { type: String, required: true },
-    price: { type: Number, required: true, default: 0 },
+    price: { type: Number, required: true },
     location: String,
     type: { type: String, enum: ['Casual', 'Other'] },
     status: {type: String, enum: ['Updating', 'Fixing','Active', 'Inactive']}
