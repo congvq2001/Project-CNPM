@@ -121,7 +121,6 @@ function Reception() {
       }
     }
 
-
   const handleCheckout=async(e)=>{
     e.preventDefault();
     try{
