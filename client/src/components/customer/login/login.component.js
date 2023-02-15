@@ -49,12 +49,13 @@ export default function Login() {
                         }else if(role==1){
                             if(r=="nvQuay")
                                 navi("/staff");
-                        }else if(role==2){
+                            else
+                                alert("chon sai vai tro");
+                        } else if (role == 2) {
                             if(r=="nvLeTan"){
                                 navi("/receptionist");
-                            }      
-                        }else{
-                            alert("chon sai vai tro");
+                            }    else
+                            alert("chon sai vai tro");  
                         }
                     }else{
                         alert("dang nhap that bai")

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Carousel, Badge, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
+import image from '../home/onlday.jpg'
 
 export default function Event() {
     const [event, setEvent] = useState({
@@ -74,7 +75,7 @@ export default function Event() {
     return (
             <div style={{marginTop:"30px",marginBottom:"50px"}} className="inner2">
             <form >
-                <h3>{event.name}</h3>
+                <h3 style={{fontSize: "40px"}}>{event.name}</h3>
                 <hr size="1"  color="gray"/>  
                 <p style={{fontSize:"19px",fontWeight:"bold"}}>{event.description}</p>
                 <p>{event.detail}</p>
@@ -84,7 +85,7 @@ export default function Event() {
                             <Carousel.Item key={index}>
                                 <img
                                     className="d-block w-100"
-                                    src={item}
+                                    src={item ? item : image}
                                     alt="img"
                                 />
                             </Carousel.Item>

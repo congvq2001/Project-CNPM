@@ -49,7 +49,7 @@ export default function SignUp() {
             backgroundColor: '#4158D0',
             backgroundImage: 'linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)'}}>
         <div className="outer" >
-            <div className="inner">
+            <div className="inner" style={{marginTop: "100px"}}>
                 <form>
                     <h3>Register</h3>
                         <div className="form-group">

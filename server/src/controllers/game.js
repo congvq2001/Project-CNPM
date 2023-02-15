@@ -44,7 +44,7 @@ export const createGame = handleAsync(async (req, res) => {
     const {code, name, price, location, type , status } = req.body
     const data = await Game.create({code, name, price: type === 'Casual' ? 0 : price , location, type , status} )
     res.json({
-      message: "Thêm trò chơi thành công",
+      message: "Thêm cơ sở vật chất thành công",
       data,
     })
   } catch (error) {
@@ -111,6 +111,7 @@ export const addGameToCusTicket = handleAsync(async(req, res) => {
     const data = { gameId, quantity }
     await CusTicket.findOneAndUpdate({ _id: cusTicketId }, { $push: { game: { gameId, quantity } } } )
     res.status(200).json({
+      status:true,
       message: "Them tro choi thanh cong",
     })
   } catch (error) {
