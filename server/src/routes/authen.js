@@ -47,7 +47,8 @@ import {
   addGameToCusTicket,
   searchUsers,
   getUserInfo,
-  getOtherGame
+  getOtherGame,
+  verifyEmail
   // UserBuyTicketWithoutToken
 } from "../controllers"
 import { createFeedBack, deleteFeedback, locFeedback, viewFeedback } from "../controllers/feedback"
@@ -68,6 +69,7 @@ router.post("/login-staff", validateLogin, checkLoginStaff)
 //router.post("/logout", logout)
 router.post("/signup", validateSignup, createUser)
 router.post("/signup-staff", validateSignupStaff, createStaff)
+router.get('/verify/:id/:token', verifyEmail)
 
 // router.get("/userInfo", verifyToken, isAuth, getPersonalInfo)
 // router.patch("/userInfo", verifyToken,isAuth, personalUpdateUser)
