@@ -1,7 +1,9 @@
 import React, { useState,useEffect } from 'react'
-import {Carousel,Row,Card,Button,Col, Accordion} from 'react-bootstrap'
+import {Row,Card,Button,Col, Accordion} from 'react-bootstrap'
+import Carousel from 'react-bootstrap/Carousel'
 import { useNavigate } from 'react-router-dom'
 import './Home1.css'
+import image from './onlday.jpg'
 
 export default function Home1() {
     const [lastEvent, setLastEvent] = useState([])
@@ -46,30 +48,63 @@ export default function Home1() {
                     {/* <Button onClick={()=>{login?navi("/user/tickbooking"):navi("/login")}} style={{backgroundColor: '#F05454', border:'none'}}size="lg">Đặt vé ngay</Button> {' '} */}
                     <Button onClick={()=>navi("/user/event")} variant="outline-secondary" size="lg">Khám phá</Button>
                 </Col>
-                <Col xs={6}><img style={{width:'100%', height:'100%'}} src="https://hoianit.com/wp-content/uploads/2020/06/bana1.jpg"/></Col>
+                <Col xs={6}>
+                    <Carousel>
+                        <Carousel.Item interval={4000}>
+                            <img
+                            className="d-block w-100"
+                            src="https://hoianit.com/wp-content/uploads/2020/06/bana1.jpg"
+                            alt="First slide"
+                            height="600px"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item interval={4000}>
+                            <img
+                            className="d-block w-100"
+                            src="https://cdnimg.vietnamplus.vn/t1200/Uploaded/fsmsr/2019_06_06/nha_trang.jpg"
+                            alt="Second slide"
+                            height="600px"
+                            />
+                        </Carousel.Item>
+                        <Carousel.Item interval={4000}>
+                            <img
+                            className="d-block w-100"
+                            src="https://www.evaairways-vn.com/public/uploads/data/images/fly/nhung-khu-vui-choi-giai-tri-bac-nhat-nuoc-my-1.jpg"
+                            alt="Third slide"
+                            height="600px"
+                            />
+                        </Carousel.Item>
+                    </Carousel>
+                </Col>
             </Row>
             </div>
 
             <div className='homeComponent'>
                 <h1>Sự kiện mới nhất</h1>
-                <Row>
                     {
                         lastEvent.map(evnt=>
-                            <Col key={evnt._id}>
-                                <Card className='homeCard' >
-                                <Card.Img className='homeCardImg' variant="top" src={evnt.image[0] ? evnt.image[0] : 'https://hoianit.com/wp-content/uploads/2020/06/bana1.jpg'} height="270px" />
-                                    <Card.Body className="homeCardBody"> 
-                                        <Card.Title style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden" }}>{evnt.name}</Card.Title>
-                                        <Card.Text>
-                                            {evnt.description}
-                                        </Card.Text>
-                                    </Card.Body>
+                            <Col>
+                                <Row>
+                                    <Col style={{paddingRight: "0"}}>
+                                        <Card.Img className='homeCardImg' variant="top" src={evnt.image[0] ? evnt.image[0] : image} height="400px" />                                
+                                    </Col>
+                                    <Col key={evnt._id} style={{paddingLeft: "0", height: "400px", marginLeft:'100px', marginRight:'60px'}}>
+                                        <Card style={{border: "0"}}>
+                                            <Card.Body className="homeCardBody"> 
+                                                    <Card.Title style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden", fontSize: "40px", color: "#30475E" }}><b>{evnt.name}</b></Card.Title>
+                                                    <Card.Text>
+                                                        {evnt.description}
+                                                    </Card.Text>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                                <Row>
                                     <Card.Footer onClick={()=>handleEvent(evnt._id)} className='homeCardFooter' style={{borderRadius: '0 0 50px 0px'}}>Xem thêm</Card.Footer>
-                                </Card>
+                                </Row>
                             </Col>
                         )
                     }
-                </Row>
             </div>
 
             <div className='homeComponent'>
@@ -82,22 +117,22 @@ export default function Home1() {
                         <Row>
                             <Col>
                                 <h2 style={{fontWeight: 'bold', color: '#F05454'}}>7</h2>
-                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>ngày mở cửa trong tuần</h3>
+                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>Ngày mở cửa trong tuần</h3>
                             </Col>
                             <Col>
                                 <h2 style={{fontWeight: 'bold', color: '#F05454'}}>156</h2>
-                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>sự kiện trong năm 2021</h3>
+                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>Sự kiện trong năm 2022</h3>
                                 
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <h2 style={{fontWeight: 'bold', color: '#F05454'}}>873</h2>
-                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>khách trung bình 1 ngày</h3>
+                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>Khách trung bình ngày</h3>
                             </Col>
                             <Col>
                                 <h2 style={{fontWeight: 'bold', color: '#F05454'}}>1256</h2>
-                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>trò chơi</h3>
+                                <h3 style={{fontWeight: 'bold', color: '#676FA3'}}>Trò chơi</h3>
                             </Col>
                         </Row>
 

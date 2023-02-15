@@ -150,7 +150,7 @@ export default function Profile() {
                         <button onClick={()=>handleUpdate()}>Cập nhật</button>
                     </div>
                     <div className='vip'>
-                        <p>VIP: {VIP?VIP:"No VIP"}</p>
+                        <p>VIP: <span>NO VIP</span></p>
                     </div>
                 </div>
                 <div className='ticket'>
