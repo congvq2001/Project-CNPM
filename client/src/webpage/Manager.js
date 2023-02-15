@@ -10,9 +10,9 @@ import ChangeStaff from '../components/staff/staffManage/changeStaff'
 import ChangeEvent from '../components/staff/eventManage/changeEvent'
 import EventManage from '../components/staff/eventManage/eventManage'
 import './manager.css'
-import AddFacility from '../components/staff/khuvuichoi/addFacility'
-import Facilities from '../components/staff/khuvuichoi/facilities'
-import EditFacility from '../components/staff/khuvuichoi/editFacility'
+import AddGame from '../components/staff/khuvuichoi/addGame'
+import Games from '../components/staff/khuvuichoi/games'
+import EditGame from '../components/staff/khuvuichoi/editGame'
 import Services from '../components/staff/khuvuichoi/services'
 import Addservice from '../components/staff/khuvuichoi/addService'
 import Editservice from '../components/staff/khuvuichoi/editService'
@@ -32,9 +32,9 @@ export default function Manager() {
                 <Route exact path="/quanlysk" element={<EventManage/>}></Route>
                 <Route exact path="/themsk" element={<AddEvent/>}></Route>
                 <Route exact path="/suask/:idsk" element={<ChangeEvent/>}></Route>
-                <Route exact path="/addFacility" element={<AddFacility/>}></Route>
-                <Route exact path="/facilities" element={<Facilities/>}></Route>
-                <Route exact path="/editFacility/:idfc" element={<EditFacility/>}></Route>
+                <Route exact path="/addGame" element={<AddGame/>}></Route>
+                <Route exact path="/games" element={<Games/>}></Route>
+                <Route exact path="/editGame/:idfc" element={<EditGame/>}></Route>
                 <Route exact path="/services" element={<Services/>}></Route>
                 <Route exact path="/addvephi" element={<Addservice/>}></Route>
                 <Route exact path="/addVIP" element={<Addservice/>}></Route>

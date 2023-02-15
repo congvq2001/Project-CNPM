@@ -3,7 +3,7 @@ import React, { useState}  from "react";
 import {Form, Col, Row, InputGroup, FormControl} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-export default function AddFacility() {
+export default function AddGame() {
     const [nameTicket, setNameTicket] = useState("");
     const [price, setPrice] = useState(1);
 

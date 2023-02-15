@@ -44,7 +44,7 @@ export const createGame = handleAsync(async (req, res) => {
     const {code, name, price, location, type , status } = req.body
     const data = await Game.create({code, name, price: type === 'Casual' ? 0 : price , location, type , status} )
     res.json({
-      message: "Thêm cơ sở vật chất thành công",
+      message: "Thêm trò chơi thành công",
       data,
     })
   } catch (error) {

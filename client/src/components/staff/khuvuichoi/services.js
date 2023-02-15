@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 
-export default function Facilities(){
+export default function Games(){
 
   const [vaocua, setvaocua] = useState([]);
   const [VIP, setVIP] = useState([]);
