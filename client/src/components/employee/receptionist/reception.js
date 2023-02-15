@@ -122,7 +122,6 @@ function Reception() {
       }
     }
 
-
   const handleCheckout=async(e)=>{
     e.preventDefault();
     try{
@@ -264,7 +263,7 @@ function Reception() {
                 <Form.Control onChange={e => setCusId(e.target.value)} type="text" disabled={found ? true : false} value={cusId} /> 
                 <hr />
                 <p>Giá tiền thanh toán: {demoP}vnđ</p>
-            <Button onClick={(e) => handleSubmit(e)}>Xác nhận</Button>
+              <Button onClick={(e) => handleSubmit(e)}>Xác nhận</Button>
               </> : <></>}
           </Form>
           <h5 style={{marginTop:"20px"}}>Vé được tạo:</h5>
