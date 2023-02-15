@@ -16,7 +16,7 @@
 }
 .logout{
     width: 100%;
-    height: 10%;
+    height: 15%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,19 +35,23 @@
     background-color: #fa1924;
 }
 .info_ticket .info{
-    width: 45%;
-    height: 98%;
+    width: 30%;
+    height: 85%;
     background-color: rgb(173, 255, 47,0.4);
     border-radius: 30px;
     display: flex;
     flex-direction: column;
 }
-.info_ticket .info h3{
-    text-align: center;  
+h3{
+    margin: 20px 0;
+    text-align: center;
+    font-weight: 600;
+    color:darkblue;
 }
 .info_ticket .info .img{
     margin-top: 10px;
-    margin-left: 10%;
+    margin-bottom: 20px;
+    margin-left: 35%;
     width: 150px;
     height: 150px;
     overflow:hidden;
@@ -141,13 +145,22 @@
     text-align: center;
     box-shadow: 1px 1px 2px #0258b3;
 }
-.info_ticket .info .vip a:hover{
+.info_ticket .vip a:hover{
     cursor: pointer;
     background-color: #0258b3;
 }
+
+.vip span{
+    color: red;
+}
+
+.info_ticket p{
+    font-weight: 600;
+}
+
 .info_ticket .ticket{
-    width: 45%;
-    height: 98%;
+    width: 50%;
+    height: 85%;
     background-color: rgba(47, 196, 255, 0.4);
     border-radius: 30px;
     display: flex;

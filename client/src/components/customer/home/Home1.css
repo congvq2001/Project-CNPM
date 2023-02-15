@@ -5,6 +5,10 @@
     overflow: hidden;
 }
 
+.banner .row{
+    margin: 0;
+}
+
 .Home1 h1{
     font-weight: bold;
     color: #30475E
@@ -22,15 +26,15 @@
 }
 
 .homeCard{
-    margin-right:20px; 
+    /* margin-right:20px;  */
     margin-left:20px; 
     border-radius: 50px 0px
 }
 
 .homeCardBody{
-    height: 18rem;
-    padding-left:30px;
-    padding-right:30px
+    height: 400px;
+    /* padding-left:30px;
+    padding-right:30px */
 }
 
 .homeCardImg{
@@ -38,6 +42,7 @@
 }
 
 .homeCardFooter{
+    width: 98%;
     text-align: center;
     background-color:#F05454;
     color:#FFFFFF;

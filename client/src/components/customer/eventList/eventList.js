@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { Form, Card, Button, Row, Col } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
 import axios from 'axios';
+import image from '../home/onlday.jpg'
 
 export default function EventList() {
     const [listEvent, setListEvent] = useState([]);
@@ -55,9 +56,9 @@ export default function EventList() {
                     listEvent.map(ev=>
                         <Col key={ev._id} md={4} style={{marginBottom:"25px"}}>
                             <Card >
-                                {<Card.Img variant="top" src={ev.image[0] ? ev.image[0] : 'https://hoianit.com/wp-content/uploads/2020/06/bana1.jpg'} height="300" />}
+                                {<Card.Img variant="top" src={ev.image[0] ? ev.image[0] : image} height="300" />}
                                 <Card.Body>
-                                    <Card.Title>{ev.name}</Card.Title>
+                                    <Card.Title style={{fontSize: "36px", color: "#30475E"}}><b>{ev.name}</b></Card.Title>
                                     <Card.Text style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden" }}>
                                         {ev.description}
                                     </Card.Text>
