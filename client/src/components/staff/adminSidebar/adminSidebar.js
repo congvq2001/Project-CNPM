@@ -29,8 +29,8 @@ const AdminSidebar = () => {
                 </MenuItem>
                 <SubMenu title="Quản lý khu vui chơi" >
                   <MenuItem>
-                    Cơ sở vật chất
-                    <Link to="facilities"/>
+                    Quản lý trò chơi
+                    <Link to="games"/>
                   </MenuItem>
                   <MenuItem>
                     Giá dịch vụ

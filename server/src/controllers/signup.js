@@ -7,7 +7,6 @@ import { sendEmail } from "../services/signup";
 
 
 
-
 // export const createUser = handleAsync(async(req, res) => {
 //     const user = await UserService.create(req.body);
 //     const accessToken = jwt.sign(
