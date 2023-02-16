@@ -27,11 +27,11 @@ export default function SignUp() {
                 const res=await axios.post("http://localhost:5000/api/v1/signup",data);
                 console.log(res);
                 // if(res.data.success){
-                    localStorage.setItem("accessToken",res.data.accessToken);
-                localStorage.setItem("nameUser", res.data.data.name);
-                localStorage.setItem("id",res.data.data._id )
-                    alert("Đăng ký thành công");
-                    navi("/user");
+                    // localStorage.setItem("accessToken",res.data.accessToken);
+                    // localStorage.setItem("nameUser", res.data.data.name);
+                    // localStorage.setItem("id",res.data.data._id )
+                    alert("Đăng ký thành công vui lòng xác nhận gmail");
+                    navi("/login");
                 // }
 
             }catch(err){
