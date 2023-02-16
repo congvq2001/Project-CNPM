@@ -6,4 +6,5 @@ export * from './game';
 export * from './ticket';
 export * from './customerEvent';
 export * from './cusTicket';
+export * from './mailToken'
 
