@@ -57,6 +57,12 @@ const AdminSidebar = () => {
                     <Link to="themnv" />
                   </MenuItem>
                 </SubMenu>
+                <SubMenu title="Quản lý khách hàng" >
+                  <MenuItem>
+                    Danh sách khách hàng
+                    <Link to="quanlykh" />
+                  </MenuItem>
+                </SubMenu>
 
               </Menu>
             </SidebarContent>

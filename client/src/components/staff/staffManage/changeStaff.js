@@ -46,10 +46,10 @@ export default function ChangeStaff() {
             } })
                 
                 if(res.data.success){
-                    alert("sua thong tin thanh cong")
+                    alert("Sửa thông tin thành công")
                     navi("/manager/quanlynv")
                 }else{
-                    alert("su thong tin that bai")
+                    alert("Thông tin chưa được cập nhật")
                 }
             }catch(err){
                 alert("err")
@@ -66,10 +66,10 @@ export default function ChangeStaff() {
               authorization: `Bearer ${accessToken}`
             } })
                 if(res.data.success){
-                    alert("sua thong tin thanh cong")
+                    alert("Sửa thông tin thành công")
                     navi("/manager/quanlynv")
                 }else{
-                    alert("su thong tin that bai")
+                    alert("Thông tin chưa được cập nhật")
                 }
             }catch(err){
                 alert("err")
@@ -77,7 +77,7 @@ export default function ChangeStaff() {
           }
           
       }else{
-          alert("thieu thong tin kia bro")
+          alert("Vui lòng ghi đầy đủ thông tin")
       }
     }
         return (

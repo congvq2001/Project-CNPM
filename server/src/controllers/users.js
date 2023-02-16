@@ -34,6 +34,7 @@ export const updateUser = handleAsync(async (req, res) => {
       password: newPassword,
       name: req.body.name,
       address: req.body.address,
+      status: req.body.status,
     }
     for (let prop in params) if (!params[prop]) delete params[prop]
     const data = await Customer.findByIdAndUpdate(req.params.id, params)
