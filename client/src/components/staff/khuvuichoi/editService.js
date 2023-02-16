@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function EditService() {
     const [nameTicket, setNameTicket] = useState("");
     const [price, setPrice] = useState(1);
-<<<<<<< HEAD
     const [timeLimit, setTimeLimit] = useState(0);
     const [type, setType] = useState("")
 
@@ -27,23 +26,6 @@ export default function EditService() {
             setPrice(res.data.result.price)
             setTimeLimit(res.data.result.timeLimit)
             setType(res.data.result.ticketType)
-=======
-
-    let navi = useNavigate();
-    let {idloaive,idve} = useParams();
-
-    useEffect(() => {
-        const fetchfc = async ()=>{
-        let res=await axios.get(`http://localhost:5000/api/v1/ticket/${idloaive}`);
-        if(res.data.success){
-            const list=res.data.result.type
-            list.map(iteam=>{
-                if(iteam._id===idve){
-                    setNameTicket(iteam.nameTicket)
-                    setPrice(iteam.price)
-                }
-            })
->>>>>>> 18079f3 (first)
         }else{
             alert("that bai")
         }
@@ -55,15 +37,9 @@ export default function EditService() {
         e.preventDefault();
         if(nameTicket&&price){
             try{
-<<<<<<< HEAD
                 const res=await axios.patch(`http://localhost:5000/api/v1/ticket/${idve}`,
                                             {
                                                 name: nameTicket,
-=======
-                const res=await axios.put(`http://localhost:5000/api/v1/ticket/${idloaive}/${idve}`,
-                                            {
-                                                nameTicket,
->>>>>>> 18079f3 (first)
                                                 price
                                             }
                             ) 
@@ -108,7 +84,6 @@ export default function EditService() {
                     />
                     </InputGroup>
 
-<<<<<<< HEAD
                     {
                         checkType(type)
                         ?<div>
@@ -126,8 +101,6 @@ export default function EditService() {
                             null 
                     }
 
-=======
->>>>>>> 18079f3 (first)
                 <button onClick={(e)=>handleSubmit(e)} style={{paddingTop : '10px'}} className="btn btn-dark btn-lg btn-block">Submit</button>
                 </Form>
             </div>
