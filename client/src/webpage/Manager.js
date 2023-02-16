@@ -7,6 +7,8 @@ import AddEvent from '../components/staff/eventManage/addEvent.component'
 import StaffManage from '../components/staff/staffManage/staffManage'
 import AddStaff from '../components/staff/staffManage/addStaff'
 import ChangeStaff from '../components/staff/staffManage/changeStaff'
+import CusManage from '../components/staff/cusManage/cusManage'
+import ChangeCus from '../components/staff/cusManage/changeCus'
 import ChangeEvent from '../components/staff/eventManage/changeEvent'
 import EventManage from '../components/staff/eventManage/eventManage'
 import './manager.css'
@@ -28,6 +30,8 @@ export default function Manager() {
                 <Route exact path="/xemdoanhthu" element={<Xemdoanhthu/>}></Route>
                 <Route exact path="/quanlynv" element={<StaffManage/>}></Route>
                 <Route exact path="/themnv" element={<AddStaff/>}></Route>
+                <Route exact path="/quanlykh" element={<CusManage/>}></Route>
+                <Route exact path="/suakh/:idkh" element={<ChangeCus/>}></Route>
                 <Route exact path="/suanv/:idnv" element={<ChangeStaff/>}></Route>
                 <Route exact path="/quanlysk" element={<EventManage/>}></Route>
                 <Route exact path="/themsk" element={<AddEvent/>}></Route>

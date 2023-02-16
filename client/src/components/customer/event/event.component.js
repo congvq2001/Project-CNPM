@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Carousel, Badge, ButtonToolbar, ButtonGroup } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import image from '../home/onlday.jpg'
+import moment from 'moment';
 
 export default function Event() {
     const [event, setEvent] = useState({
@@ -14,7 +15,6 @@ export default function Event() {
     let accessToken=localStorage.getItem("accessToken");
     let { eventid } = useParams();
     let navi=useNavigate();
-
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/v1/event/${eventid}`, {
@@ -93,8 +93,8 @@ export default function Event() {
                     </Carousel>
                 }
                 <br/>
-                <p style={{fontSize:"15px"}}>Thời gian bắt đầu: {event.timeStart}</p>
-                <p style={{fontSize:"15px"}}>Thời gian kết thúc: {event.timeEnd}</p>
+                <p style={{fontSize:"15px"}}>Thời gian bắt đầu: {moment(event.timeStart).format('DD/MM/YYYY HH:mm:ss')}</p>
+                <p style={{fontSize:"15px"}}>Thời gian kết thúc: {moment(event.timeEnd).format('DD/MM/YYYY HH:mm:ss')}</p>
                 <br/>
                 <p style={{ fontSize: "18px", color: "green" }}>Giá: {event.price}</p>
                 <p style={{ fontSize: "18px", color: "green" }}>Discount: 20%</p>
@@ -107,6 +107,7 @@ export default function Event() {
                             <button 
                                 className="btn btn-success btn-lg" 
                                 aria-describedby="btnGroupAddon2"
+                                onClick={()=>alert("Bạn đã đặt vé cho sự kiện này")}
                             >
                                 Đã tham gia
                             </button>
@@ -116,7 +117,7 @@ export default function Event() {
                                 aria-describedby="btnGroupAddon2"
                                 onClick={(e)=>handleSubmit(e)}
                             >
-                            Dat Ve
+                            Đặt vé tham gia
                             </button>
                         }  
                     </ButtonGroup>
