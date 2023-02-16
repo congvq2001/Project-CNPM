@@ -19,7 +19,7 @@ import Services from '../components/staff/khuvuichoi/services'
 import Addservice from '../components/staff/khuvuichoi/addService'
 import Editservice from '../components/staff/khuvuichoi/editService'
 import EditserviceVIP from '../components/staff/khuvuichoi/editserviceVIP'
-
+import ViewFeedback from '../components/staff/feedbackManage/viewFeedback'
 
 export default function Manager() {
     return (
@@ -27,6 +27,7 @@ export default function Manager() {
         <div className='mana'>
             <AdminSidebar/>
             <Routes>
+                <Route exact path="/xemfeedback" element={<ViewFeedback/>}></Route>
                 <Route exact path="/xemdoanhthu" element={<Xemdoanhthu/>}></Route>
                 <Route exact path="/quanlynv" element={<StaffManage/>}></Route>
                 <Route exact path="/themnv" element={<AddStaff/>}></Route>
