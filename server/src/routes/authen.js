@@ -48,7 +48,8 @@ import {
   searchUsers,
   getUserInfo,
   getOtherGame,
-  verifyEmail
+  handleForgotPasswor,
+  handleForgotPassworGet
   // UserBuyTicketWithoutToken
 } from "../controllers"
 import { createFeedBack, deleteFeedback, locFeedback, viewFeedback } from "../controllers/feedback"
@@ -69,6 +70,9 @@ router.post("/login-staff", validateLogin, checkLoginStaff)
 //router.post("/logout", logout)
 router.post("/signup", validateSignup, createUser)
 router.post("/signup-staff", validateSignupStaff, createStaff)
+
+router.post("/forgot-password",handleForgotPasswor);
+router.get("/forgot-password",handleForgotPassworGet);
 router.get('/verify/:id/:token', verifyEmail)
 
 // router.get("/userInfo", verifyToken, isAuth, getPersonalInfo)
