@@ -73,7 +73,7 @@ router.post("/signup-staff", validateSignupStaff, createStaff)
 
 router.post("/forgot-password",handleForgotPasswor);
 router.get("/forgot-password",handleForgotPassworGet);
-router.get('/verify/:id/:token', verifyEmail)
+// router.get('/verify/:id/:token', verifyEmail)
 
 // router.get("/userInfo", verifyToken, isAuth, getPersonalInfo)
 // router.patch("/userInfo", verifyToken,isAuth, personalUpdateUser)
