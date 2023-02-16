@@ -44,6 +44,9 @@ export default function CustomerHeader() {
               <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to="/user/event">Sự kiện</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/user/tickbooking">Đặt vé</NavLink>
+              </li>
                 {/* <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to={login?"/user/tickbooking":"/login"}>Đặt vé</NavLink>
               </li> */}

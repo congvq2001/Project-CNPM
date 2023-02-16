@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react"
 import {Form, Button,Col,Row} from "react-bootstrap"
+import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 
-function TicketBooking() {
+export default function TicketBooking() {
     const [listTicket, setListTicket] = useState([]);
     const [idTicket, setIdTicket] = useState("");
     const [quantity,setQuantity] = useState(1);
     const [demoP, setDemoP] = useState(0);
     let accessToken=localStorage.getItem("accessToken");
+    let navi=useNavigate();
     
     useEffect(() => {
         fetch("http://localhost:5000/api/v1/customerEvent?o=-1", {
@@ -50,12 +52,13 @@ function TicketBooking() {
                             )
             console.log(res);
             if(res.data.success){
-                alert("dat ve thanh cong")
+                alert("Bạn đã đặt vé thành công")
+                navi('/user/event')
             }else{
-                alert("that bai")
+                alert("Bạn chưa đặt vé thành công")
             }
         }else{
-            alert("khong du thong tin")
+            alert("Vui lòng cung cấp đầy đủ thông tin")
         }
     }
 
@@ -98,4 +101,3 @@ function TicketBooking() {
         </div>
     </div>
 }
-export default TicketBooking

@@ -29,8 +29,8 @@ const AdminSidebar = () => {
                 </MenuItem>
                 <SubMenu title="Quản lý khu vui chơi" >
                   <MenuItem>
-                    Cơ sở vật chất
-                    <Link to="facilities"/>
+                    Quản lý trò chơi
+                    <Link to="games"/>
                   </MenuItem>
                   <MenuItem>
                     Giá dịch vụ
@@ -57,7 +57,16 @@ const AdminSidebar = () => {
                     <Link to="themnv" />
                   </MenuItem>
                 </SubMenu>
-
+                <SubMenu title="Quản lý khách hàng" >
+                  <MenuItem>
+                    Danh sách khách hàng
+                    <Link to="quanlykh" />
+                  </MenuItem>
+                </SubMenu>
+                <MenuItem >
+                  Xem feedback 
+                  <Link to="/manager/xemfeedback" />  
+                </MenuItem>
               </Menu>
             </SidebarContent>
 
