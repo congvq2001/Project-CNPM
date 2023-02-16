@@ -63,7 +63,10 @@ const AdminSidebar = () => {
                     <Link to="quanlykh" />
                   </MenuItem>
                 </SubMenu>
-
+                <MenuItem >
+                  Xem feedback 
+                  <Link to="/manager/xemfeedback" />  
+                </MenuItem>
               </Menu>
             </SidebarContent>
 

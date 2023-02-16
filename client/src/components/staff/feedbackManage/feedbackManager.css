@@ -1,0 +1,12 @@
+.Filter{
+    float: left;
+}
+.lab{
+    float: left;
+}
+.options{
+    float: left;
+}
+#selection{
+    text-align: start;
+}
