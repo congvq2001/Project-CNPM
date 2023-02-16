@@ -108,11 +108,23 @@ export const addGameToCusTicket = handleAsync(async(req, res) => {
   try {
     const cusTicketId = req.params.id
     const { gameId, quantity } = req.body
+    const isGameExist = await Game.findById(req.body.gameId)
+    if (!isGameExist)
+      return res.json({
+      message: "Game khong ton tai",
+      error,
+    })
     const data = { gameId, quantity }
-    await CusTicket.findOneAndUpdate({ _id: cusTicketId }, { $push: { game: { gameId, quantity } } } )
+    const rs = await CusTicket.findOneAndUpdate({ _id: cusTicketId, status: { $nin: [-1] } }, { $push: { game: { gameId, quantity } } })
+    if (!rs) {
+      return res.json({
+      message: "Co loi xay ra",
+      error,
+    })}
     res.status(200).json({
       status:true,
       message: "Them tro choi thanh cong",
+      rs
     })
   } catch (error) {
     res.json({
