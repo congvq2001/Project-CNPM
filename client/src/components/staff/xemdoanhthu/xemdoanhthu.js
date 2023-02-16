@@ -2,6 +2,7 @@ import axios from 'axios';
 import React ,{ useEffect, useState} from 'react';
 import { Table } from 'react-bootstrap';
 import './Xemdoanhthu.css'
+import moment from 'moment'
 
 export default function Xemdoanhthu() {
     const [startDate, setStartDate] = useState(new Date());
@@ -41,14 +42,14 @@ console.log(dataDoanhThu)
         }
         else{        
             setCanSee(false);
-            alert("chon du ngay");
+            alert("Vui lòng chọn đủ thông tin ngày");
         }
         
     }
     
     return (
         <div className='xdt_ctn'>
-            <div className='heading'>Thống kê doanh thu</div>
+            <div className='heading' style={{textAlign: "center"}}><h3>Thống kê doanh thu</h3></div>
             <div className='inputdate'>
                 <div className='input_ctn'>
                 <div className='input'>
@@ -69,14 +70,15 @@ console.log(dataDoanhThu)
                 </div>
             </div>
             <div className={`output${canSee?'':' hideoutput'}`} >
-                <div className='head'>Thống kê từ ngày {curStartDate} đến {curEndDate} </div>
+                <div className='head'>Thống kê từ ngày {moment(curStartDate).format('DD/MM/YYYY')} đến {moment(curEndDate).format('DD/MM/YYYY')} </div>
+                
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             <th>Loại vé</th>
                             <th>Số lượng</th>
                             <th>Thời điểm thanh toán</th>
-                            <th>ID người thanh toán</th>
+                            <th>Khách hàng</th>
                             <th>Số tiền</th>
                             <th></th>
                         </tr>
@@ -88,10 +90,10 @@ console.log(dataDoanhThu)
                                 total+=data.price;
                                 return(
                                     <tr key={index}>
-                                        <th>{data.ticketId}</th>
+                                        <th>{data.isPreOrder?"Đặt trước": "Không đặt trước"}</th>
                                         <th>{data.quantity}</th>
-                                        <th>{data.createdAt.substring(0,10)}</th>
-                                        <th>{data.cusId?data.cusId:"null"}</th>
+                                        <th>{moment(data.updatedAt.substring(0,10)).format('DD/MM/YYYY HH:mm:ss')}</th>
+                                        <th>{data.cusId?data.cusName:"Không xác định"}</th>
                                         <th>{data.price}</th>
                                         <th></th>
                                     </tr>
@@ -103,9 +105,9 @@ console.log(dataDoanhThu)
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th style={{color: "#007bff", fontSize: "24px"}}><i>Total</i></th>
+                        <th style={{color: "#007bff", fontSize: "24px"}}>{total}</th>
                         <th></th>
-                        <th>{total}</th>
-                        <th>Total</th>
                         </tr>
                     </tbody>
                     

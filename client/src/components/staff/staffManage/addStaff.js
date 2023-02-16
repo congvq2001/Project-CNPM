@@ -27,14 +27,14 @@ export default function AddEvent() {
                             ) 
                 console.log(res);
                 if(res.status==200){
-                    alert("tao thanh cong");
+                    alert("Tao nhân viên thành công");
                     navi("/manager/quanlynv")
                 } 
             }catch(error){
-                alert("tao that bai")
+                alert("Tạo thất bại")
             }
         }else{
-            alert("nhap form di bro");
+            alert("Vui lòng điền đầy đủ thông tin");
         }
     }
     console.log(role)
