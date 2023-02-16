@@ -65,7 +65,7 @@ export const updateEvent = handleAsync(async (req, res) => {
 
 export const deleteEvent = handleAsync(async (req, res) => {
   try {
-    const data = await Event.findById(req.params.id);
+    const data = await Event.findByIdAndDelete(req.params.id);
     if (!data) {
       return res.json({
         message: "Xóa thất bại",
