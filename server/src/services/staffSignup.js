@@ -13,7 +13,7 @@ export const create = async (data) => {
     address,
     role
   } = data
-  const user = new Staff({
+  const staff = new Staff({
     email,
     password,
     name,
@@ -21,5 +21,5 @@ export const create = async (data) => {
     address,
     role
   })
-  return await user.save()
+  return await staff.save()
 }

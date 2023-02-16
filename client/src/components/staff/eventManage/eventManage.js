@@ -42,6 +42,7 @@ export default function EventManage() {
     }
         return (
             <div className="em">
+                <div style={{paddingLeft: "170px"}}><Button onClick={()=>navi(`/manager/themsk`)}>+ Thêm sự kiện</Button></div>
                 <div className="eventList">
                 <Row md={6}>
                 {

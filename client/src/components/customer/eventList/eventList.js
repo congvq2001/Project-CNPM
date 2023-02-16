@@ -87,6 +87,8 @@ export default function EventList() {
                 } 
                 </Row>
 
+                <div style={{height: "150px"}}></div>
+
                 <div style={{backgroundColor: 'blanchedalmond', width: '23%', height: '70px', textAlign: 'center', paddingBottom: '25px', border: '1px solid burlywood'}}>
                     <h3>Sự kiện đã tham gia</h3>
                 </div>
