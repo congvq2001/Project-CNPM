@@ -8,6 +8,7 @@ export default function ChangeCus() {
     const [name, setName] = useState("");
     const [status, setStatus] = useState("");
     const [email, setEmail] = useState("");
+    const [address, setAddress] = useState("");
     const accessToken = localStorage.getItem('accessToken')
     let navi=useNavigate();
     let { idkh }=useParams();
@@ -24,6 +25,7 @@ export default function ChangeCus() {
         setEmail(data.email);
         setphone(data.phone);
         setStatus(data.status);
+        setAddress(data.address);
       }
         fetchkh();
     }, []);
@@ -56,43 +58,32 @@ export default function ChangeCus() {
             <div className="db">
                 
                     <h3>Thay đổi thông tin khách hàng</h3>
-                    <Form.Label>Tên khách hàng</Form.Label>
-                    <InputGroup className="mb-3">
-                    <Form.Control
-                        // required
-                        type="text"
-                        placeholder="Nhập tên khách hàng"
-                        value={name}
-                        // onChange={e=>setName(e.target.value)}
-                    />
-                    </InputGroup> 
+                    <Form.Group className="mb-3">
+                        <Form.Label>Tên khách hàng</Form.Label>
+                        <Form.Control placeholder={name} disabled />
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3">
+                        <Form.Label>Địa chỉ</Form.Label>
+                        <Form.Control placeholder={address} disabled />
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3">
+                        <Form.Label>Số điện thoại</Form.Label>
+                        <Form.Control placeholder={phone} disabled />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control placeholder={email} disabled />
+                    </Form.Group>
+
                     <Form.Label>Trạng thái tài khoản</Form.Label>
                     <InputGroup className="mb-3">
                     <Form.Control as="select" value={status} onChange={(e)=>setStatus(e.target.value)}>
                         <option value={true}>Kích Hoạt</option>
                         <option value={false}>Hủy kích hoạt</option>
                     </Form.Control>
-                    </InputGroup>
-                    <Form.Label>Số điện thoại</Form.Label>
-                    <InputGroup className="mb-3">
-                    <Form.Control
-                        // required
-                        type="text"
-                        placeholder="Nhập số điện thoại"
-                        value={phone}
-                        // onChange={e=>setphone(e.target.value)}
-                    />
-                    </InputGroup>
-
-                    <Form.Label>Email</Form.Label>
-                    <InputGroup className="mb-3">
-                    <Form.Control
-                        // required
-                        type="text"
-                        placeholder="Nhập email"
-                        value={email}
-                        // onChange={e=>setEmail(e.target.value)}
-                    />
                     </InputGroup>
 
                 <button onClick={e=>handleSubmit(e)} style={{paddingTop : '10px'}} className="btn btn-dark btn-lg btn-block">Submit</button>

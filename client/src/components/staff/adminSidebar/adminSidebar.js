@@ -18,7 +18,7 @@ const AdminSidebar = () => {
           <div className='adminsb'>
           <ProSidebar>
             <SidebarHeader>
-              <h4 style={{textAlign: "center"}} >Tinker Bell Garden</h4>
+            <Link className="navbar-brand logo" to="/manager" style={{paddingLeft: "15px"}}><h3 style={{color: "white"}}>Tinkerbell Garden</h3></Link>
             </SidebarHeader>
 
             <SidebarContent>
@@ -27,7 +27,7 @@ const AdminSidebar = () => {
                   Xem doanh thu 
                   <Link to="/manager/xemdoanhthu" />  
                 </MenuItem>
-                <SubMenu title="Quản lý khu vui chơi" >
+                <SubMenu title="Quản lý khu vui chơi"   >
                   <MenuItem>
                     Quản lý trò chơi
                     <Link to="games"/>

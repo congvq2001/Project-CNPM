@@ -51,7 +51,9 @@ export default function StaffManage(){
   }
 
   return(
+    
     <div className='db'>
+      <Button onClick={()=>navi(`/manager/themnv`)}>+ Thêm nhân viên</Button>
      
       <h3>Bảng quản lý nhân viên</h3>
       <Table striped bordered >
