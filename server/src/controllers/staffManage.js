@@ -59,7 +59,7 @@ export const getOneStaff = handleAsync(async (req, res) => {
 
 export const deleteStaff = handleAsync(async (req, res) => {
   try {
-    const data = await Staff.findByIdAndUpdate(req.params.id, {status: false})
+    const data = await Staff.findByIdAndDelete(req.params.id)
     if (!data) {
       return res.json({
         message: "Xóa thất bại",

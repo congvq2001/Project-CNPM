@@ -156,7 +156,7 @@ body {
   #form {
     background-color: lightskyblue;
     margin: auto;
-    display: none;
+    display: block;
     position: fixed;
     top: 10%;
     right: 40%;

@@ -42,7 +42,7 @@ export default function AddGame() {
         return (
             <div className="db">
 
-                <Form id="form">
+                <Form id="form" style={{display: "block", top: "0%"}}>
                     <h3>Thêm trò chơi</h3>
                     <Form.Label>Mã trò chơi</Form.Label>
                     <InputGroup className="mb-3">

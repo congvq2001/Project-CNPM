@@ -67,10 +67,10 @@ export default function Feedback() {
 
     }
     return (
-        <div className="feedback">
+        <div className="feedback" >
             <div id="square" onClick={cancel}></div>
             <button type="button" id="main_button" onClick={testFunc}>Feedback</button>
-            <div id="form">
+            <div id="form" style={{display: "none"}}>
                 <div id="danhGia" color="white">Đánh giá dịch vụ</div>
                 <form>
                     <div id="form-group">
