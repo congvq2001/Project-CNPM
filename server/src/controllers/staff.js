@@ -10,9 +10,15 @@ export const checkInTicket = async (req, res, next) => {
       const cus = await Customer.findById(cusId);
       const ticket = await CustomerEvent.findOne({
         eventId: data.eventId,
-        cusId: cusId,
+        cusId: cusId
       });
+      console.log(ticket);
       if (ticket) {
+        if (ticket.status == true)
+          res.json({
+            status: false,
+          message: "Có lỗi xảy ra",
+        });
         let checkInTicket = await CusTicket.create({
           ticketId,
           cusId,
@@ -26,7 +32,11 @@ export const checkInTicket = async (req, res, next) => {
             : data.price * ticket.quantity * 0.8,
         });
         checkInTicket = await checkInTicket.populate('ticketId').execPopulate()
-        console.log(cus.isVip);
+        await CustomerEvent.findOneAndUpdate({
+          eventId: data.eventId,
+          cusId: cusId,
+          status: false
+        },{status: true})
         return res
           .status(200)
           .json({
