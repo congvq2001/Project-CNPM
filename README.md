@@ -5,10 +5,6 @@ Yêu cầu cài đặt trước
 * [MongoDB](https://www.mongodb.com/)
 * [Node.js](https://nodejs.org/en/)
 
-Công nghệ sử dụng 
-* expressJS
-* ReactJS
-
 Clone project 
 ``` 
 git clone https://github.com/congvq2001/Project-CNPM.git
