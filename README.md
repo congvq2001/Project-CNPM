@@ -1,3 +1,33 @@
 # Project-CNPM-20221
 
-Còn lại 1 vài api sau : đăng ký VIP ( có thể không cần làm)
+
+Yêu cầu cài đặt trước 
+* [MongoDB](https://www.mongodb.com/)
+* [Node.js](https://nodejs.org/en/)
+
+Công nghệ sử dụng 
+* expressJS
+* ReactJS
+
+Clone project 
+``` 
+git clone https://github.com/congvq2001/Project-CNPM.git
+```
+
+Set up server 
+``` 
+cd server 
+npm install
+npm run dev
+```
+
+Set up client 
+
+```
+cd client
+npm install
+npm start 
+```
+
+Api đã test trong file postman ở server
+
