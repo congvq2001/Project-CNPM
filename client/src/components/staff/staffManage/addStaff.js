@@ -3,7 +3,8 @@ import React, { useState}  from "react";
 import {Form, Col, Row, InputGroup, FormControl} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-export default function AddEvent() {
+export default function AddStaff() {
+
     const [phone, setphone] = useState("");
     const [name, setName] = useState("");
     const [role, setRole] = useState("quanLy");
@@ -37,11 +38,10 @@ export default function AddEvent() {
             alert("Vui lòng điền đầy đủ thông tin");
         }
     }
-    console.log(role)
         return (
-            <div className="db">
+            <div className="db" >
 
-                <Form id="form">
+                <Form id="form" style={{display: "block"}}>
                     <h3>Thêm nhân viên</h3>
                     <Form.Label>Tên nhân viên</Form.Label>
                     <InputGroup className="mb-3">

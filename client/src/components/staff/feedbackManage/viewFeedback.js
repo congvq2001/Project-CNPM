@@ -70,7 +70,7 @@ export default function ViewFeedback() {
     }
 
     return (
-        <div className='db'>
+        <div className='db' >
 
             <h3>Bảng quản lý feedback</h3>
             <div>
